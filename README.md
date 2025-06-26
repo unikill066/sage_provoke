@@ -1,81 +1,61 @@
-# Python Chat Box
+# S.A.G.E — Strategic Analysis & Guidance Engine
 
-A modern, responsive chat application built with Python Flask and HTML/CSS/JavaScript.
+A modern, professional multi-agent workflow app built with **React**, **Vite**, **Tailwind CSS**, and **shadcn/ui**.
 
 ## Features
 
-- 🎨 Modern, responsive UI with beautiful gradients
-- 💬 Real-time message sending and receiving
-- 📱 Mobile-friendly design
-- 🔄 Auto-refresh messages
-- 🗑️ Clear all messages functionality
-- ⌨️ Enter to send, Shift+Enter for new line
-- 📝 Auto-resizing text input
-- ⏰ Message timestamps
-- 🎭 Typing indicators
-- 🎯 Auto-scroll to latest messages
+- 🧠 Multi-step, multi-agent workflow (Strategy → Biz Reqs → Design & UX → Features → User Stories)
+- 💡 Each step offers AI-generated choices with confidence levels and color-coded badges
+- ✍️ Users can refine requirements at any step with custom input
+- 🟢 Modern, animated, glassmorphic UI with vibrant green/teal theme
+- 🖥️ Fully responsive, enterprise-grade design
+- ⚡ Built with Vite, React, Tailwind CSS, and shadcn/ui
 
-## Installation
+## Getting Started
 
-1. **Clone or download this repository**
-
-2. **Install Python dependencies:**
+1. **Install dependencies:**
    ```bash
-   pip install -r requirements.txt
+   cd sage-frontend
+   npm install
    ```
 
-3. **Run the application:**
+2. **Start the development server:**
    ```bash
-   python app.py
+   npm run dev
    ```
 
-4. **Open your browser and go to:**
+3. **Open your browser:**
    ```
-   http://localhost:5000
+   http://localhost:5173
    ```
 
-## How to Use
-
-1. **Send Messages**: Type your message in the input field and press Enter or click the Send button
-2. **New Lines**: Use Shift+Enter to create new lines in your message
-3. **Refresh**: Click the "🔄 Refresh" button to manually refresh messages
-4. **Clear**: Click the "🗑️ Clear" button to delete all messages
-
-## File Structure
+## Project Structure
 
 ```
 sage_provoke/
-├── app.py              # Main Flask application
-├── requirements.txt    # Python dependencies
-├── messages.json       # Message storage (created automatically)
-├── templates/
-│   └── index.html      # Chat interface template
-└── README.md          # This file
+└── sage-frontend/
+    ├── src/
+    │   ├── App.jsx
+    │   ├── index.css
+    │   └── components/
+    ├── public/
+    ├── package.json
+    └── ...
 ```
 
-## Technical Details
+## Tech Stack
 
-- **Backend**: Python Flask
-- **Frontend**: HTML5, CSS3, JavaScript (ES6+)
-- **Storage**: JSON file-based storage
-- **Styling**: Custom CSS with modern design patterns
-- **Responsive**: Works on desktop, tablet, and mobile devices
+- **Frontend:** React (Vite)
+- **Styling:** Tailwind CSS, shadcn/ui, custom glassmorphism
+- **State:** React hooks
+- **No backend required** (all logic is frontend)
 
 ## Customization
 
-You can easily customize the chat application by:
-
-- **Colors**: Modify the CSS gradients in `templates/index.html`
-- **Messages**: Edit the sample messages in `app.py`
-- **Auto-refresh**: Change the refresh interval in the JavaScript code
-- **Styling**: Update the CSS classes and properties
-
-## Requirements
-
-- Python 3.7 or higher
-- Flask 2.3.3
-- Modern web browser with JavaScript enabled
+- **Agents & Steps:** Edit the `agents` array in `App.jsx`
+- **Theme:** Tweak colors in `src/index.css`
+- **UI Components:** Use shadcn/ui for rapid, modern component development
 
 ## License
 
-This project is open source and available under the MIT License.
+MIT
