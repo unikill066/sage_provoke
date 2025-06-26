@@ -3,7 +3,6 @@
 <!-- Nikhil, please check this XML for correctness-->
 
 <!-- This agent expects the inputs of 
-Target User Personas – Who the product is for, including behaviors, needs, pain points, and context of use.
 Business Goals & Success Metrics – What outcomes the company is aiming for (e.g., retention, revenue, engagement).
 Current Product State – Brief on existing features, known issues, and user feedback to avoid redundant or misaligned suggestions.
 Technical Constraints & Resources – What’s feasible given current stack, team capacity, and timeframe.
