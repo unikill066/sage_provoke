@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Python Chat Box</title>
+    <title>S.A.G.E - Strategic Analysis & Guidance Engine</title>
     <style>
         * {
             margin: 0;
@@ -12,110 +12,112 @@
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 50%, #16213e 100%);
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: #0a0a0a;
             height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
             overflow: hidden;
-            color: #e8e8e8;
+            color: #ffffff;
+            font-weight: 400;
+            line-height: 1.6;
         }
 
         .chat-container {
             width: 95%;
-            max-width: 800px;
+            max-width: 1200px;
             height: 90vh;
-            background: linear-gradient(145deg, #1e1e2e 0%, #2d2d44 100%);
-            border-radius: 20px;
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4), 
-                        0 0 0 1px rgba(255, 255, 255, 0.05);
+            background: #111111;
+            border: 1px solid #2a2a2a;
+            border-radius: 8px;
             display: flex;
             flex-direction: column;
             overflow: hidden;
             position: relative;
-            backdrop-filter: blur(10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
         }
 
         .chat-header {
-            background: linear-gradient(135deg, #2d2d44 0%, #3d3d5c 100%);
+            background: #1a1a1a;
             color: #ffffff;
-            padding: 20px 25px;
+            padding: 24px 32px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            border-bottom: 1px solid #2a2a2a;
+            font-size: 16px;
         }
 
         .chat-title {
-            font-size: 1.3em;
-            font-weight: bold;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+            font-size: 24px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            color: #ffffff;
+            margin-bottom: 4px;
+        }
+
+        .chat-subtitle {
+            font-size: 14px;
+            color: #888888;
+            font-weight: 400;
+            letter-spacing: 0.3px;
         }
 
         .chat-controls {
             display: flex;
-            gap: 10px;
+            gap: 12px;
         }
 
         .btn {
-            padding: 8px 16px;
-            border: none;
-            border-radius: 20px;
+            padding: 10px 18px;
+            border: 1px solid #3a3a3a;
+            border-radius: 4px;
             cursor: pointer;
             font-size: 12px;
-            font-weight: bold;
-            transition: all 0.3s ease;
-            background: rgba(255, 255, 255, 0.1);
-            color: #ffffff;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            font-weight: 600;
+            transition: all 0.2s ease;
+            background: #1a1a1a;
+            color: #cccccc;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
         }
 
         .btn:hover {
-            background: rgba(255, 255, 255, 0.2);
-            transform: translateY(-1px);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            background: #2a2a2a;
+            border-color: #4a4a4a;
+            color: #ffffff;
         }
 
         .btn-danger {
-            background: rgba(220, 53, 69, 0.8);
-            border-color: rgba(220, 53, 69, 0.3);
+            border-color: #4a2a2a;
+            color: #cc6666;
         }
 
         .btn-danger:hover {
-            background: rgba(220, 53, 69, 1);
-            box-shadow: 0 4px 12px rgba(220, 53, 69, 0.4);
+            background: #2a1a1a;
+            border-color: #6a2a2a;
+            color: #ff6666;
         }
 
         .chat-messages {
             flex: 1;
-            padding: 20px;
+            padding: 24px 32px;
             overflow-y: auto;
-            background: linear-gradient(180deg, #1a1a2e 0%, #16213e 100%);
+            background: #0a0a0a;
             scroll-behavior: smooth;
         }
 
         .message {
-            margin-bottom: 20px;
+            margin-bottom: 32px;
             display: flex;
             align-items: flex-start;
-            animation: fadeInUp 0.3s ease;
+            animation: fadeIn 0.3s ease;
         }
 
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         .message.sent {
@@ -124,53 +126,61 @@
 
         .message-content {
             max-width: 75%;
-            padding: 15px 20px;
-            border-radius: 20px;
+            padding: 20px 24px;
+            border-radius: 8px;
             word-wrap: break-word;
             position: relative;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-            backdrop-filter: blur(10px);
+            font-size: 14px;
+            line-height: 1.6;
         }
 
         .message.received .message-content {
-            background: linear-gradient(135deg, #2d2d44 0%, #3d3d5c 100%);
-            color: #e8e8e8;
-            border-bottom-left-radius: 5px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: #1a1a1a;
+            color: #e0e0e0;
+            border: 1px solid #2a2a2a;
+            border-left: 4px solid #3b82f6;
         }
 
         .message.sent .message-content {
-            background: linear-gradient(135deg, #4a90e2 0%, #357abd 100%);
+            background: #1e3a8a;
             color: #ffffff;
-            border-bottom-right-radius: 5px;
-            border: 1px solid rgba(74, 144, 226, 0.3);
+            border: 1px solid #2563eb;
+            border-right: 4px solid #60a5fa;
         }
 
         .message-time {
-            font-size: 0.75em;
-            opacity: 0.7;
-            margin-top: 8px;
+            font-size: 11px;
+            opacity: 0.6;
+            margin-top: 12px;
             display: block;
+            font-weight: 400;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
         .message-user {
-            font-size: 0.8em;
-            font-weight: bold;
-            margin-bottom: 5px;
+            font-size: 12px;
+            font-weight: 700;
+            margin-bottom: 8px;
             opacity: 0.9;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+        }
+
+        .message.received .message-user {
+            color: #3b82f6;
+        }
+
+        .message.sent .message-user {
+            color: #60a5fa;
         }
 
         .typing-indicator {
-            padding: 15px 20px;
-            color: #a0a0a0;
-            font-style: italic;
+            padding: 16px 32px;
+            color: #666666;
+            font-size: 13px;
             display: none;
-            animation: pulse 1.5s infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% { opacity: 0.5; }
-            50% { opacity: 1; }
+            font-style: italic;
         }
 
         .typing-indicator.show {
@@ -178,144 +188,225 @@
         }
 
         .chat-input-container {
-            padding: 20px 25px;
-            background: linear-gradient(145deg, #1e1e2e 0%, #2d2d44 100%);
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 24px 32px;
+            background: #1a1a1a;
+            border-top: 1px solid #2a2a2a;
             display: flex;
-            gap: 15px;
-            align-items: center;
+            gap: 16px;
+            align-items: flex-end;
         }
 
         .chat-input {
             flex: 1;
-            padding: 15px 20px;
-            border: 2px solid rgba(255, 255, 255, 0.1);
-            border-radius: 25px;
+            padding: 16px 20px;
+            border: 1px solid #3a3a3a;
+            border-radius: 6px;
             outline: none;
             font-size: 14px;
-            transition: all 0.3s ease;
+            transition: all 0.2s ease;
             resize: none;
-            max-height: 100px;
-            min-height: 50px;
-            background: rgba(255, 255, 255, 0.05);
-            color: #e8e8e8;
-            backdrop-filter: blur(10px);
+            max-height: 120px;
+            min-height: 48px;
+            background: #0a0a0a;
+            color: #e0e0e0;
+            font-family: inherit;
+            line-height: 1.5;
         }
 
         .chat-input::placeholder {
-            color: #a0a0a0;
+            color: #666666;
         }
 
         .chat-input:focus {
-            border-color: #4a90e2;
-            box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.2);
-            background: rgba(255, 255, 255, 0.08);
+            border-color: #3b82f6;
+            background: #0f0f0f;
         }
 
         .send-btn {
-            padding: 15px 25px;
-            background: linear-gradient(135deg, #4a90e2 0%, #357abd 100%);
-            color: white;
-            border: none;
-            border-radius: 25px;
+            padding: 16px 24px;
+            background: #1e3a8a;
+            color: #ffffff;
+            border: 1px solid #2563eb;
+            border-radius: 6px;
             cursor: pointer;
-            font-weight: bold;
-            font-size: 14px;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            box-shadow: 0 4px 15px rgba(74, 144, 226, 0.3);
+            font-weight: 600;
+            font-size: 13px;
+            transition: all 0.2s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            min-width: 80px;
         }
 
         .send-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(74, 144, 226, 0.4);
-            background: linear-gradient(135deg, #5a9ee2 0%, #458abd 100%);
+            background: #2563eb;
+            border-color: #3b82f6;
         }
 
         .send-btn:active {
-            transform: translateY(0);
+            background: #1d4ed8;
         }
 
         .send-btn:disabled {
-            opacity: 0.6;
+            opacity: 0.5;
             cursor: not-allowed;
-            transform: none;
-            box-shadow: none;
+            background: #374151;
+            border-color: #4b5563;
         }
 
         .empty-state {
             text-align: center;
-            color: #a0a0a0;
-            padding: 40px 20px;
-            font-style: italic;
+            color: #666666;
+            padding: 80px 20px;
+            font-size: 16px;
+            line-height: 1.8;
         }
 
-        /* Scrollbar styling */
+        .empty-state h3 {
+            color: #ffffff;
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 16px;
+            letter-spacing: 0.5px;
+        }
+
+        .empty-state p {
+            color: #888888;
+            margin-bottom: 24px;
+        }
+
+        .capability-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+            margin-top: 24px;
+        }
+
+        .capability-item {
+            background: #1a1a1a;
+            border: 1px solid #2a2a2a;
+            border-radius: 6px;
+            padding: 16px;
+            text-align: center;
+            transition: all 0.2s ease;
+        }
+
+        .capability-item:hover {
+            border-color: #3b82f6;
+            background: #1f1f1f;
+        }
+
+        .capability-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: #ffffff;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .capability-desc {
+            font-size: 12px;
+            color: #888888;
+            line-height: 1.4;
+        }
+
         .chat-messages::-webkit-scrollbar {
-            width: 8px;
+            width: 6px;
         }
 
         .chat-messages::-webkit-scrollbar-track {
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 4px;
+            background: #0a0a0a;
         }
 
         .chat-messages::-webkit-scrollbar-thumb {
-            background: rgba(255, 255, 255, 0.2);
-            border-radius: 4px;
+            background: #3a3a3a;
+            border-radius: 3px;
         }
 
         .chat-messages::-webkit-scrollbar-thumb:hover {
-            background: rgba(255, 255, 255, 0.3);
+            background: #4a4a4a;
         }
 
-        /* Responsive design */
         @media (max-width: 768px) {
             .chat-container {
                 width: 100%;
                 height: 100vh;
                 border-radius: 0;
+                border: none;
             }
             
             .chat-header {
-                padding: 15px 20px;
+                padding: 20px 24px;
             }
             
             .chat-input-container {
-                padding: 15px 20px;
+                padding: 20px 24px;
+            }
+            
+            .chat-messages {
+                padding: 20px 24px;
             }
             
             .message-content {
                 max-width: 85%;
             }
+
+            .capability-grid {
+                grid-template-columns: 1fr;
+            }
         }
 
-        /* Additional dark theme enhancements */
-        .chat-container::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: radial-gradient(circle at 20% 80%, rgba(74, 144, 226, 0.1) 0%, transparent 50%),
-                        radial-gradient(circle at 80% 20%, rgba(53, 122, 189, 0.1) 0%, transparent 50%);
-            pointer-events: none;
-            z-index: -1;
+        .status-indicator {
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            background: #10b981;
+            border-radius: 50%;
+            margin-right: 8px;
+        }
+
+        .connection-status {
+            font-size: 12px;
+            color: #666666;
+            margin-top: 8px;
+        }
+
+        .business-tag {
+            display: inline-block;
+            background: #1e3a8a;
+            color: #ffffff;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 10px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-right: 8px;
+            margin-bottom: 8px;
+        }
+
+        .strategy-tag { background: #059669; }
+        .requirements-tag { background: #dc2626; }
+        .design-tag { background: #7c3aed; }
+        .features-tag { background: #ea580c; }
+        .stories-tag { background: #0891b2; }
+
+        .chat-title::before,
+        .chat-title::after {
+            display: none;
         }
     </style>
 </head>
 <body>
     <div class="chat-container">
         <div class="chat-header">
-            <div class="chat-title">
-                🐍 Python Chat Box
+            <div>
+                <div class="chat-title">S.A.G.E</div>
+                <div class="chat-subtitle">Strategic Analysis & Guidance Engine</div>
             </div>
             <div class="chat-controls">
-                <button class="btn" onclick="refreshMessages()">🔄 Refresh</button>
-                <button class="btn btn-danger" onclick="clearMessages()">🗑️ Clear</button>
+                <button class="btn" onclick="refreshMessages()">Refresh</button>
+                <button class="btn btn-danger" onclick="clearMessages()">Clear</button>
             </div>
         </div>
         
@@ -336,25 +427,54 @@
                 {% endfor %}
             {% else %}
                 <div class="empty-state">
-                    No messages yet. Start the conversation! 💬
+                    <h3>Strategic Analysis & Guidance Engine</h3>
+                    <p>Your AI-powered business strategy consultant ready to assist with strategic planning, requirements analysis, design decisions, feature prioritization, and user story development.</p>
+                    
+                    <div class="capability-grid">
+                        <div class="capability-item">
+                            <div class="capability-title">Strategy</div>
+                            <div class="capability-desc">Business strategy development, market analysis, competitive positioning</div>
+                        </div>
+                        <div class="capability-item">
+                            <div class="capability-title">Requirements</div>
+                            <div class="capability-desc">Business requirements gathering, stakeholder analysis, scope definition</div>
+                        </div>
+                        <div class="capability-item">
+                            <div class="capability-title">Design & UX</div>
+                            <div class="capability-desc">User experience design, interface architecture, usability analysis</div>
+                        </div>
+                        <div class="capability-item">
+                            <div class="capability-title">Features</div>
+                            <div class="capability-desc">Feature prioritization, roadmap planning, technical feasibility</div>
+                        </div>
+                        <div class="capability-item">
+                            <div class="capability-title">User Stories</div>
+                            <div class="capability-desc">Story mapping, acceptance criteria, development planning</div>
+                        </div>
+                    </div>
+                    
+                    <div style="margin-top: 24px; color: #888888; font-size: 14px;">
+                        <div class="status-indicator"></div>
+                        Ready to analyze your business objectives
+                    </div>
                 </div>
             {% endif %}
         </div>
         
         <div class="typing-indicator" id="typingIndicator">
-            Someone is typing...
+            Analyzing business requirements...
         </div>
         
         <div class="chat-input-container">
             <textarea 
                 id="messageInput" 
                 class="chat-input" 
-                placeholder="Type your message here..." 
+                placeholder="Describe your business challenge, strategy question, or project requirements..." 
                 rows="1"
                 onkeydown="handleKeyDown(event)"
             ></textarea>
             <button id="sendBtn" class="send-btn" onclick="sendMessage()">
-                📤 Send
+                Analyze
             </button>
         </div>
     </div>
@@ -365,13 +485,11 @@
         const chatMessages = document.getElementById('chatMessages');
         const typingIndicator = document.getElementById('typingIndicator');
 
-        // Auto-resize textarea
         messageInput.addEventListener('input', function() {
             this.style.height = 'auto';
-            this.style.height = Math.min(this.scrollHeight, 100) + 'px';
+            this.style.height = Math.min(this.scrollHeight, 120) + 'px';
         });
 
-        // Handle Enter key (Send on Enter, new line on Shift+Enter)
         function handleKeyDown(event) {
             if (event.key === 'Enter' && !event.shiftKey) {
                 event.preventDefault();
@@ -379,25 +497,20 @@
             }
         }
 
-        // Auto-scroll to bottom
         function scrollToBottom() {
             chatMessages.scrollTop = chatMessages.scrollHeight;
         }
 
-        // Scroll to bottom on page load
         scrollToBottom();
 
-        // Send message function
         async function sendMessage() {
             const message = messageInput.value.trim();
             
             if (!message) return;
             
-            // Disable input and button
             messageInput.disabled = true;
             sendBtn.disabled = true;
             
-            // Add message to chat immediately
             addMessageToChat(message, 'sent');
             messageInput.value = '';
             messageInput.style.height = 'auto';
@@ -415,19 +528,16 @@
                 
                 if (!data.success) {
                     console.error('Error sending message:', data.error);
-                    // You could show an error message to the user here
                 }
             } catch (error) {
                 console.error('Error:', error);
             } finally {
-                // Re-enable input and button
                 messageInput.disabled = false;
                 sendBtn.disabled = false;
                 messageInput.focus();
             }
         }
 
-        // Add message to chat display
         function addMessageToChat(text, type) {
             const messageDiv = document.createElement('div');
             messageDiv.className = `message ${type}`;
@@ -440,7 +550,7 @@
             
             messageDiv.innerHTML = `
                 <div class="message-content">
-                    <div class="message-user">${type === 'sent' ? 'You' : 'User'}</div>
+                    <div class="message-user">${type === 'sent' ? 'You' : 'S.A.G.E'}</div>
                     ${text}
                     <span class="message-time">${time}</span>
                 </div>
@@ -449,14 +559,12 @@
             chatMessages.appendChild(messageDiv);
             scrollToBottom();
             
-            // Remove empty state if it exists
             const emptyState = chatMessages.querySelector('.empty-state');
             if (emptyState) {
                 emptyState.remove();
             }
         }
 
-        // Refresh messages
         async function refreshMessages() {
             try {
                 const response = await fetch('/get_messages');
@@ -470,9 +578,8 @@
             }
         }
 
-        // Clear all messages
         async function clearMessages() {
-            if (!confirm('Are you sure you want to clear all messages?')) {
+            if (!confirm('Are you sure you want to clear all analysis data? This action cannot be undone.')) {
                 return;
             }
             
@@ -490,7 +597,6 @@
             }
         }
 
-        // Typing indicator
         let typingTimeout;
         messageInput.addEventListener('input', function() {
             typingIndicator.classList.add('show');
@@ -501,7 +607,6 @@
             }, 1000);
         });
 
-        // Auto-refresh messages every 10 seconds
         setInterval(async () => {
             try {
                 const response = await fetch('/get_messages');
@@ -510,16 +615,14 @@
                 if (data.success && data.messages) {
                     const currentMessages = document.querySelectorAll('.message');
                     if (data.messages.length > currentMessages.length) {
-                        // Only reload if there are new messages
                         location.reload();
                     }
                 }
             } catch (error) {
                 console.error('Error checking for new messages:', error);
             }
-        }, 10000);
+        }, 30000);
 
-        // Focus on input when page loads
         messageInput.focus();
     </script>
 </body>
