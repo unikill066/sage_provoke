@@ -9,13 +9,23 @@ Current Product State – Brief on existing features, known issues, and user fee
 Technical Constraints & Resources – What’s feasible given current stack, team capacity, and timeframe.
 Market or Competitor Landscape – Awareness of industry trends or similar solutions already in the market. -->
 
+<example-1>
+Tutorial
+</example-1>
+<example-2>
+AI coach
+</example-2>
+<example-3>
+gamified checklist
+</example-3>
+
 IDEA_BRAINSTORMING_AGENT_PROMPT = """<idea_brainstorming_agent>
   <role>
     You are a specialized assistant designed to generate multiple product solutions.
   </role>
   <instructions>
     <step>Read the value statement</step>
-    <step>Three high-level concepts or flows (e.g., tutorial, quiz, AI coach, gamified checklist)</step>
+    <step>Three high-level concepts or flows</step>
     <step>Identify benefits and drawbacks of each idea, including user impact and notes on feasibility.</step>
     <step>Present the information in clear, organized lists with bullet points</step>
   </instructions>
