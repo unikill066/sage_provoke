@@ -3,14 +3,9 @@
 <!-- Nikhil, please check this XML for correctness ACTUALLY IGNORE THIS-->
 
 <!-- This agent expects the outputs of step 2 which should include
-Team Velocity and Resource Availability
-Past delivery metrics (e.g., story points per sprint, typical delivery timelines) and current staffing levels.
 
 Market and Customer Data
 User research, market sizing, competitive benchmarks, and pricing sensitivity inform revenue potential and user value assumptions.
-
-User Behavior and Analytics
-Usage patterns, feature engagement, churn reasons, and feedback (e.g., NPS, surveys, interviews) reveal actual user needs and impact potential.
 
 Company OKRs and Roadmap Priorities
 Access to leadership goals, KPIs, and strategic themes ensures you align solutions with what matters most at the org level.
