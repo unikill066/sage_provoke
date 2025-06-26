@@ -1,0 +1,23 @@
+[project]
+name = "design_onboarding"
+version = "0.1.0"
+description = "design_onboarding using crewAI"
+authors = [{ name = "Your Name", email = "you@example.com" }]
+requires-python = ">=3.10,<3.13"
+dependencies = [
+    "crewai[tools]>=0.117.0,<1.0.0"
+]
+
+[project.scripts]
+design_onboarding = "design_onboarding.main:run"
+run_crew = "design_onboarding.main:run"
+train = "design_onboarding.main:train"
+replay = "design_onboarding.main:replay"
+test = "design_onboarding.main:test"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.crewai]
+type = "crew"
