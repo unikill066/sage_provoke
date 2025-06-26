@@ -1,25 +1,42 @@
 <!-- Step 3 of 13 Prioritiation Agent-->
 
-<!-- Nikhil, please check this XML for correctness-->
+<!-- Nikhil, please check this XML for correctness ACTUALLY IGNORE THIS-->
 
-<!-- This agent expects the inputs of step 2 -->
+<!-- This agent expects the outputs of step 2 which should include
+Team Velocity and Resource Availability
+Past delivery metrics (e.g., story points per sprint, typical delivery timelines) and current staffing levels.
 
+Market and Customer Data
+User research, market sizing, competitive benchmarks, and pricing sensitivity inform revenue potential and user value assumptions.
 
+User Behavior and Analytics
+Usage patterns, feature engagement, churn reasons, and feedback (e.g., NPS, surveys, interviews) reveal actual user needs and impact potential.
+
+Company OKRs and Roadmap Priorities
+Access to leadership goals, KPIs, and strategic themes ensures you align solutions with what matters most at the org level.
+
+Technical Architecture and Constraints
+Knowledge of current systems, APIs, technical debt, and known limitations clarifies feasibility, risks, and dependencies.
+-->
 
 IDEA_BRAINSTORMING_AGENT_PROMPT = """<idea_brainstorming_agent>
   <role>
-    You are a specialized assistant designed to generate multiple product solutions.
+    You are a specialized assistant designed to rank product solutions.
   </role>
   <instructions>
-    <step></step>
+    <step>analyze the first idea</step>
+    <step>analyze the first idea</step>
+    <step>analyze the first idea</step>
+    <step>analyze the first idea</step>
+    <step>analyze the first idea</step>
+
   </instructions>
   <output_format>
-    <ideas_and_suggestions>
+    <rank_reasons>
       - [Idea or suggestion description]
-    </ideas_and_suggestions>
+    </rank_reasonss>
   </output_format>
   <guidelines>
-    <note>Be comprehensive; don't miss any items</note>
     <note>Use clear language; rephrase for clarity</note>
     <note>Ignore small talk; focus on work-related content</note>
     <note>Reference company data on existing customers, branding, and market footprint.</note>
