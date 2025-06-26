@@ -5,8 +5,10 @@ import { Input } from "@/components/ui/input.jsx";
 import { ScrollArea } from "@/components/ui/scroll-area.jsx";
 import { Badge } from "@/components/ui/badge.jsx";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter } from "@/components/ui/dialog.jsx";
+// eslint-disable-next-line no-unused-vars
+import { motion, AnimatePresence } from "framer-motion";
+import SageLogo from "./assets/SAGE-LOGO.png";
 
-// Define our agents in sequential order
 const agents = [
   {
     id: "strategy",
@@ -53,6 +55,15 @@ function App() {
   const [isProcessing, setIsProcessing] = useState(false);
   const [currentAgentIndex, setCurrentAgentIndex] = useState(0);
   const [currentPrompt, setCurrentPrompt] = useState("");
+  const [showWelcome, setShowWelcome] = useState(() => {
+    const lastSeen = localStorage.getItem('sageWelcomeSeen');
+    if (lastSeen) {
+      const timeDiff = Date.now() - parseInt(lastSeen);
+      const oneDay = 24 * 60 * 60 * 1000;
+      return timeDiff > oneDay;
+    }
+    return true;
+  });
   const messagesEndRef = useRef(null);
   const [modalOpen, setModalOpen] = useState(false);
   const [modalAgent, setModalAgent] = useState(null);
@@ -65,7 +76,16 @@ function App() {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
 
-  // Mock agent response generator based on current agent and accumulated prompt
+  useEffect(() => {
+    if (showWelcome) {
+      const timer = setTimeout(() => {
+        setShowWelcome(false);
+        localStorage.setItem('sageWelcomeSeen', Date.now().toString());
+      }, 4000);
+      return () => clearTimeout(timer);
+    }
+  }, [showWelcome]);
+
   const getAgentResponse = (prompt, agentId) => {
     const agent = agents.find(a => a.id === agentId);
     let options;
@@ -119,7 +139,6 @@ function App() {
         ];
     }
     
-    // Sort options by confidence (highest to lowest)
     options.sort((a, b) => b.confidence - a.confidence);
     
     return {
@@ -131,7 +150,6 @@ function App() {
     };
   };
 
-  // Open modal for agent step
   const openAgentModal = (agent, options, prompt) => {
     setModalAgent(agent);
     setModalOptions(options);
@@ -142,6 +160,7 @@ function App() {
   const sendMessage = async (e) => {
     e.preventDefault();
     if (!input.trim() || isProcessing) return;
+    
     const newPrompt = currentPrompt ? `${currentPrompt} + ${input}` : input;
     setCurrentPrompt(newPrompt);
     const userMessage = { id: Date.now(), sender: "user", text: input, type: "user-input" };
@@ -153,7 +172,7 @@ function App() {
       const agentResponse = getAgentResponse(newPrompt, agent.id);
       openAgentModal(agent, agentResponse.options, newPrompt);
       setIsProcessing(false);
-    }, 800);
+    }, 2000);
   };
 
   // Handle modal selection
@@ -170,13 +189,10 @@ function App() {
       confidence: option.confidence
     };
     setMessages(prev => [...prev, choiceMessage]);
-    // Update current prompt with the choice
     const updatedPrompt = currentPrompt ? `${currentPrompt} + ${option.text}` : option.text;
     setCurrentPrompt(updatedPrompt);
-    // Move to next agent
     const nextAgentIndex = currentAgentIndex + 1;
     setCurrentAgentIndex(nextAgentIndex);
-    // If there are more agents, open next modal
     if (nextAgentIndex < agents.length) {
       setTimeout(() => {
         const nextAgent = agents[nextAgentIndex];
@@ -184,7 +200,6 @@ function App() {
         openAgentModal(nextAgent, nextAgentResponse.options, updatedPrompt);
       }, 500);
     } else {
-      // End of workflow
       setTimeout(() => {
         const completionMessage = {
           id: Date.now() + 1,
@@ -213,13 +228,83 @@ function App() {
 
   const isWorkflowComplete = currentAgentIndex >= agents.length;
 
+  if (showWelcome) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-slate-800 flex items-center justify-center overflow-hidden">
+        <div className="relative">
+          <motion.div
+            initial={{ scale: 0.8, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            className="text-center"
+          >
+            <motion.h1
+              initial={{ y: 50, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ delay: 0.3, duration: 0.8, ease: "easeOut" }}
+              className="text-6xl md:text-8xl font-bold bg-gradient-to-r from-blue-400 via-emerald-400 to-cyan-400 bg-clip-text text-transparent mb-4"
+            >
+              S.A.G.E
+            </motion.h1>
+            <motion.p
+              initial={{ y: 30, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ delay: 0.6, duration: 0.8, ease: "easeOut" }}
+              className="text-xl md:text-2xl text-slate-300 font-light tracking-wide"
+            >
+              Strategic Analysis & Guidance Engine
+            </motion.p>
+          </motion.div>
+          
+          <motion.div
+            initial={{ scale: 0, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{ delay: 1.2, duration: 0.6, ease: "easeOut" }}
+            className="absolute -top-20 -left-20 w-40 h-40 bg-gradient-to-r from-blue-500/20 to-emerald-500/20 rounded-full blur-xl"
+          />
+          <motion.div
+            initial={{ scale: 0, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{ delay: 1.4, duration: 0.6, ease: "easeOut" }}
+            className="absolute -bottom-20 -right-20 w-40 h-40 bg-gradient-to-r from-cyan-500/20 to-purple-500/20 rounded-full blur-xl"
+          />
+          
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 2.0, duration: 0.8 }}
+            className="mt-12"
+          >
+            <motion.div
+              animate={{ 
+                scale: [1, 1.05, 1],
+                opacity: [0.7, 1, 0.7]
+              }}
+              transition={{ 
+                duration: 2,
+                repeat: Infinity,
+                ease: "easeInOut"
+              }}
+              className="w-2 h-2 bg-emerald-400 rounded-full mx-auto"
+            />
+          </motion.div>
+        </div>
+      </div>
+    );
+  }
+
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-950 to-slate-900 flex flex-col">
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.8, ease: "easeInOut" }}
+      className="min-h-screen bg-gradient-to-br from-slate-950 to-slate-900 flex flex-col"
+    >
       <header className="w-full bg-gradient-to-r from-slate-800 to-slate-900 border-b border-slate-700">
         <div className="max-w-6xl mx-auto flex items-center justify-between px-8 py-6">
-          <div>
-            <h1 className="text-2xl font-bold text-white leading-tight tracking-wide">S.A.G.E</h1>
-            <p className="text-sm text-slate-300 font-medium">Strategic Analysis & Guidance Engine</p>
+          <div className="flex items-center gap-6">
+            <img src={SageLogo} alt="SAGE Logo" className="h-8 mt-[15px] w-auto" />
+
           </div>
           <div className="text-slate-300 text-sm">
             <div className="text-xs text-slate-400">
@@ -233,34 +318,42 @@ function App() {
       </header>
       
       <main className="flex-1 flex flex-col items-center w-full">
-        <ScrollArea className="w-full max-w-5xl flex-1 px-6 py-8">
+        <ScrollArea className="w-full max-w-5xl flex-1 px-6 py-8 mx-auto">
           <div className="flex flex-col gap-6">
-            {messages.map((msg) => (
-              ((msg.sender !== "user") || (msg.sender === "user" && msg.type === "user-input")) && (
-                <div key={msg.id} className={`flex ${msg.sender === "user" ? "justify-end" : "justify-start"}`}>
-                  <Card className={`glass-card max-w-[80%] shadow-lg border-0 ${
-                    msg.sender === "user" 
-                      ? "bg-gradient-to-br from-blue-600 to-blue-700 text-white rounded-br-lg ml-auto" 
-                      : msg.sender === "system"
-                      ? "bg-gradient-to-br from-slate-700 to-slate-800 text-white rounded-bl-lg mr-auto"
-                      : "bg-white text-slate-900 rounded-bl-lg mr-auto border border-slate-200"
-                  }`}>
-                    <CardContent className="p-5">
-                      <div className="text-sm leading-relaxed">{msg.text}</div>
-                      {msg.confidence && (
-                        <div className="mt-2">
-                          <Badge className={`${getConfidenceColor(msg.confidence)} text-white text-xs`}>
-                            {msg.confidence}% Confidence
-                          </Badge>
-                        </div>
-                      )}
-                    </CardContent>
-                  </Card>
-                </div>
-              )
-            ))}
+            <AnimatePresence initial={false}>
+              {messages.map((msg) => (
+                ((msg.sender !== "user") || (msg.sender === "user" && msg.type === "user-input")) && (
+                  <motion.div
+                    key={msg.id}
+                    initial={{ opacity: 0, y: 24 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: 24 }}
+                    transition={{ type: "spring", stiffness: 400, damping: 32 }}
+                    className={`flex ${msg.sender === "user" ? "justify-end" : "justify-start"}`}
+                  >
+                    <Card className={`glass-card max-w-[80%] shadow-lg border-0 ${
+                      msg.sender === "user" 
+                        ? "bg-gradient-to-br from-blue-600 to-blue-700 text-white rounded-br-lg ml-auto" 
+                        : msg.sender === "system"
+                        ? "bg-gradient-to-br from-slate-700 to-slate-800 text-white rounded-bl-lg mr-auto"
+                        : "bg-white text-slate-900 rounded-bl-lg mr-auto border border-slate-200"
+                    }`}>
+                      <CardContent className="p-5">
+                        <div className="text-sm leading-relaxed">{msg.text}</div>
+                        {msg.confidence && (
+                          <div className="mt-2">
+                            <Badge className={`${getConfidenceColor(msg.confidence)} text-white text-xs`}>
+                              {msg.confidence}% Confidence
+                            </Badge>
+                          </div>
+                        )}
+                      </CardContent>
+                    </Card>
+                  </motion.div>
+                )
+              ))}
+            </AnimatePresence>
             
-            {/* Processing indicator */}
             {isProcessing && (
               <div className="flex justify-center">
                 <Card className="bg-white border border-slate-200 shadow-lg">
@@ -279,62 +372,91 @@ function App() {
             <div ref={messagesEndRef} />
           </div>
         </ScrollArea>
-        {/* Modal for agent step */}
+        
         <Dialog open={modalOpen} onOpenChange={open => { setModalOpen(open); if (!open) setModalWasClosed(true); }}>
-          <DialogContent className="glass-modal max-w-lg">
-            <DialogHeader>
-              <DialogTitle>{modalAgent?.name}</DialogTitle>
-              <DialogDescription>{modalAgent?.description}</DialogDescription>
-            </DialogHeader>
-            <div className="text-sm text-slate-600 mb-4">
-              Analysis based on: <span className="text-blue-600 font-medium">{modalPrompt}</span>
-            </div>
-            <div className="space-y-3">
-              {modalOptions.map((option, idx) => (
-                <Card key={option.text} className="glass-card border border-slate-200 hover:border-blue-300 hover:shadow-md transition-all cursor-pointer bg-gradient-to-r from-slate-50 to-white" onClick={() => handleModalSelect(option)}>
-                  <CardContent className="p-4">
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center gap-4">
-                        <div className="w-8 h-8 bg-slate-200 rounded-full flex items-center justify-center text-sm font-semibold text-slate-600">{idx + 1}</div>
-                        <div className="text-sm font-medium text-slate-900">{option.text}</div>
-                      </div>
-                      <div className="flex items-center gap-2">
-                        <Badge className={`${getConfidenceColor(option.confidence)} text-white text-xs`}>
-                          {option.confidence}%
-                        </Badge>
-                        <span className="text-xs text-slate-500">{getConfidenceLabel(option.confidence)}</span>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-              ))}
-              <form onSubmit={e => {
-                e.preventDefault();
-                if (customModalInput.trim()) {
-                  const revisedPrompt = modalPrompt ? modalPrompt + ' + ' + customModalInput : customModalInput;
-                  setCurrentPrompt(revisedPrompt);
-                  const revisedOptions = getAgentResponse(revisedPrompt, modalAgent.id).options;
-                  setModalPrompt(revisedPrompt);
-                  setModalOptions(revisedOptions);
-                  setCustomModalInput("");
-                }
-              }} className="flex gap-2 pt-2">
-                <Input
-                  value={customModalInput}
-                  onChange={e => setCustomModalInput(e.target.value)}
-                  placeholder="Refine requirements..."
-                  className="flex-1"
-                />
-                <Button type="submit" className="btn-flashy">Revise</Button>
-              </form>
-            </div>
-            <DialogFooter />
-          </DialogContent>
+          <motion.div
+            initial={{ opacity: 0, scale: 0.96 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.96 }}
+            transition={{ type: "spring", stiffness: 300, damping: 30 }}
+          >
+            <DialogContent className="glass-modal max-w-lg">
+              <DialogHeader>
+                <DialogTitle>{modalAgent?.name}</DialogTitle>
+                <DialogDescription>{modalAgent?.description}</DialogDescription>
+              </DialogHeader>
+              <div className="text-sm text-slate-600 mb-4">
+                Analysis based on: <span className="text-blue-600 font-medium">{modalPrompt}</span>
+              </div>
+              <motion.div
+                className="space-y-3"
+                initial="hidden"
+                animate="visible"
+                variants={{
+                  hidden: {},
+                  visible: { transition: { staggerChildren: 0.08 } }
+                }}
+              >
+                {modalOptions.map((option, idx) => (
+                  <motion.div
+                    key={option.text}
+                    initial={{ opacity: 0, x: 32 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    exit={{ opacity: 0, x: 32 }}
+                    transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                  >
+                    <Card className="glass-card border border-slate-200 hover:border-blue-300 hover:shadow-md transition-all cursor-pointer bg-gradient-to-r from-slate-50 to-white" onClick={() => handleModalSelect(option)}>
+                      <CardContent className="p-4">
+                        <div className="flex items-center justify-between">
+                          <div className="flex items-center gap-4">
+                            <div className="w-8 h-8 bg-slate-200 rounded-full flex items-center justify-center text-sm font-semibold text-slate-600">{idx + 1}</div>
+                            <div className="text-sm font-medium text-slate-900">{option.text}</div>
+                          </div>
+                          <div className="flex items-center gap-2">
+                            <Badge className={`${getConfidenceColor(option.confidence)} text-white text-xs`}>
+                              {option.confidence}%
+                            </Badge>
+                            <span className="text-xs text-slate-500">{getConfidenceLabel(option.confidence)}</span>
+                          </div>
+                        </div>
+                      </CardContent>
+                    </Card>
+                  </motion.div>
+                ))}
+                <form onSubmit={e => {
+                  e.preventDefault();
+                  if (customModalInput.trim()) {
+                    const revisedPrompt = modalPrompt ? modalPrompt + ' + ' + customModalInput : customModalInput;
+                    setCurrentPrompt(revisedPrompt);
+                    const revisedOptions = getAgentResponse(revisedPrompt, modalAgent.id).options;
+                    setModalPrompt(revisedPrompt);
+                    setModalOptions(revisedOptions);
+                    setCustomModalInput("");
+                  }
+                }} className="flex gap-2 pt-2">
+                  <Input
+                    value={customModalInput}
+                    onChange={e => setCustomModalInput(e.target.value)}
+                    placeholder="Refine requirements..."
+                    className="flex-1"
+                  />
+                  <Button type="submit" className="btn-flashy">Revise</Button>
+                </form>
+              </motion.div>
+              <DialogFooter />
+            </DialogContent>
+          </motion.div>
         </Dialog>
       </main>
       
       {((!modalOpen && !isProcessing && (messages.length === 1 || isWorkflowComplete)) || modalWasClosed) && (
-        <form onSubmit={sendMessage} className="w-full flex justify-center bg-slate-900 border-t border-slate-700">
+        <motion.form 
+          initial={{ y: 100, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
+          onSubmit={sendMessage} 
+          className="w-full flex justify-center bg-slate-900 border-t border-slate-700"
+        >
           <div className="w-full max-w-5xl flex items-center gap-4 px-6 py-6">
             <Input
               value={input}
@@ -354,9 +476,9 @@ function App() {
               {isProcessing ? "Processing..." : "Submit"}
             </Button>
           </div>
-        </form>
+        </motion.form>
       )}
-    </div>
+    </motion.div>
   );
 }
 
