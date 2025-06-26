@@ -15,4 +15,4 @@ def answer(question):
     return llm.invoke([question]).content
 
 # testing
-print(answer("What is the capital of France?"))
+# print(answer("What is the capital of France?"))
