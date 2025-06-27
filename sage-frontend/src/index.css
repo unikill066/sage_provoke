@@ -67,6 +67,14 @@
   }
 }
 
+/* Glass card effect */
+.glass-card {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
 /* Custom animations for design previews */
 @keyframes minimalist-fade {
   0%, 100% { opacity: 0.3; transform: scale(0.8); }

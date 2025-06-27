@@ -12,6 +12,7 @@ import InputBar from './components/InputBar';
 import DesignOptionsModal from './components/DesignOptionsModal';
 import UserStoriesManager from './components/UserStoriesManager';
 import UserStoriesDrawer from './components/UserStoriesDrawer';
+import WelcomeScreen from './components/WelcomeScreen';
 import { agents } from './constants';
 import { getConfidenceColor, truncateText, parseUserStoriesFromMessages } from './utils/chatUtils';
 import useChatPhases from './hooks/useChatPhases';
@@ -34,9 +35,27 @@ function parseDesignOptions(prompt) {
   }));
 }
 
+// Helper function to check if 24 hours have passed
+function shouldShowWelcomeScreen() {
+  const lastShown = localStorage.getItem('sage-welcome-last-shown');
+  if (!lastShown) return true;
+  
+  const lastShownTime = new Date(lastShown).getTime();
+  const currentTime = new Date().getTime();
+  const twentyFourHours = 24 * 60 * 60 * 1000; // 24 hours in milliseconds
+  
+  return (currentTime - lastShownTime) >= twentyFourHours;
+}
+
+// Helper function to mark welcome screen as shown
+function markWelcomeScreenAsShown() {
+  localStorage.setItem('sage-welcome-last-shown', new Date().toISOString());
+}
+
 export default function App() {
   const chat = useChatPhases(initialMessage);
   const [userStoriesDrawerOpen, setUserStoriesDrawerOpen] = React.useState(false);
+  const [showWelcome, setShowWelcome] = React.useState(shouldShowWelcomeScreen());
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -189,6 +208,11 @@ export default function App() {
     chat.setCurrentAgentIndex(3);
   }
 
+  const handleStartAnalysis = () => {
+    setShowWelcome(false);
+    markWelcomeScreenAsShown(); // Mark as shown for 24 hours
+  };
+
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -204,57 +228,62 @@ export default function App() {
         onUserStoriesClick={() => setUserStoriesDrawerOpen(true)}
         userStoriesCount={chat.currentAgentIndex >= 4 ? 3 : 0}
       />
-      <main className="flex-1 flex flex-col items-center w-full">
-        <ScrollArea className="w-full max-w-5xl flex-1 px-6 py-8 mx-auto">
-          <ChatArea
-            messages={chat.messages}
-            currentAgentIndex={chat.currentAgentIndex}
-            isProcessing={chat.isProcessing}
-            getConfidenceColor={getConfidenceColor}
+      
+      {showWelcome && chat.currentAgentIndex === 0 && chat.messages.filter(m => m.sender === 'user' && m.type === 'user-input').length === 0 ? (
+        <WelcomeScreen onStart={handleStartAnalysis} />
+      ) : (
+        <main className="flex-1 flex flex-col items-center w-full">
+          <ScrollArea className="w-full max-w-5xl flex-1 px-6 py-8 mx-auto">
+            <ChatArea
+              messages={chat.messages}
+              currentAgentIndex={chat.currentAgentIndex}
+              isProcessing={chat.isProcessing}
+              getConfidenceColor={getConfidenceColor}
+              expandedCard={chat.expandedCard}
+              expandedDescriptions={chat.expandedDescriptions}
+              toggleCardExpansion={chat.setExpandedCard}
+              toggleDescriptionExpansion={chat.setExpandedDescriptions}
+              truncateText={truncateText}
+              motion={motion}
+              Badge={Badge}
+              Card={Card}
+              CardContent={CardContent}
+              messagesEndRef={chat.messagesEndRef}
+            />
+          </ScrollArea>
+          <DesignOptionsModal
+            modalOpen={chat.modalOpen}
+            setModalOpen={chat.setModalOpen}
+            modalOptions={chat.modalOptions}
+            modalPrompt={chat.modalPrompt}
             expandedCard={chat.expandedCard}
             expandedDescriptions={chat.expandedDescriptions}
-            toggleCardExpansion={chat.setExpandedCard}
+            toggleCardExpansion={chat.toggleCardExpansion}
             toggleDescriptionExpansion={chat.setExpandedDescriptions}
+            handleModalSelect={handleModalSelect}
+            getConfidenceColor={getConfidenceColor}
             truncateText={truncateText}
             motion={motion}
-            Badge={Badge}
+            Separator={Separator}
             Card={Card}
             CardContent={CardContent}
-            messagesEndRef={chat.messagesEndRef}
+            Badge={Badge}
+            Button={Button}
           />
-        </ScrollArea>
-        <DesignOptionsModal
-          modalOpen={chat.modalOpen}
-          setModalOpen={chat.setModalOpen}
-          modalOptions={chat.modalOptions}
-          modalPrompt={chat.modalPrompt}
-          expandedCard={chat.expandedCard}
-          expandedDescriptions={chat.expandedDescriptions}
-          toggleCardExpansion={chat.toggleCardExpansion}
-          toggleDescriptionExpansion={chat.setExpandedDescriptions}
-          handleModalSelect={handleModalSelect}
-          getConfidenceColor={getConfidenceColor}
-          truncateText={truncateText}
-          motion={motion}
-          Separator={Separator}
-          Card={Card}
-          CardContent={CardContent}
-          Badge={Badge}
-          Button={Button}
-        />
-        <InputBar
-          input={chat.input}
-          setInput={chat.setInput}
-          isProcessing={chat.isProcessing}
-          currentAgentIndex={chat.currentAgentIndex}
-          modalOpen={chat.modalOpen}
-          isWorkflowComplete={chat.currentAgentIndex >= agents.length}
-          agents={agents}
-          messages={chat.messages}
-          handleSubmit={handleSubmit}
-          goToNextPhase={goToNextPhase}
-        />
-      </main>
+          <InputBar
+            input={chat.input}
+            setInput={chat.setInput}
+            isProcessing={chat.isProcessing}
+            currentAgentIndex={chat.currentAgentIndex}
+            modalOpen={chat.modalOpen}
+            isWorkflowComplete={chat.currentAgentIndex >= agents.length}
+            agents={agents}
+            messages={chat.messages}
+            handleSubmit={handleSubmit}
+            goToNextPhase={goToNextPhase}
+          />
+        </main>
+      )}
       
       <UserStoriesDrawer
         isOpen={userStoriesDrawerOpen}
