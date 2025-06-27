@@ -7,50 +7,69 @@ from agents.extractor_agent_1 import extractor_agent
 from utils.extractor_task_1 import extractor_task
 from bin.langchain_invocations import answer
 from prompts.prompts import transcript1
-# from agents.brainstorm_agent_2 import brainstorm_agent
-# from utils.brainstorm_task_2 import idea_brainstorm_task
+from constants import TRANS_EXTRACTOR_DRAFT_PATH
+from agents.brainstorm_agent_2 import brainstormer_agent
+from utils.brainstorm_task_2 import brainstorm_task
+from constants import BRAINSTORM_OUTPUT_PATH
 
 # loading environment variables
 load_dotenv()
 
-TRANS_EXTRACTOR_DRAFT_PATH = "output/problem_statement_prompt.md"
 
-# 1) Assemble the crew
-crew = Crew(
-    agents=[extractor_agent],
-    tasks=[extractor_task],
-    process=Process.sequential,
-    verbose=True
-)
+def run_extractor(transcript):
+    crew_ex = Crew(
+        agents=[extractor_agent],
+        tasks=[extractor_task],
+        process=Process.sequential,
+        verbose=True
+    )
+    crew_ex.kickoff(inputs={"transcript": transcript})
 
-def main():
-    os.makedirs("output", exist_ok=True)  # creates the output dir
-    # transcript = """<PASTE YOUR TRANSCRIPT HERE>"""
-    crew.kickoff(inputs={"transcript": transcript1})
-    
+    # load and manually polish
     with open(TRANS_EXTRACTOR_DRAFT_PATH) as f:
-        final = f.read().strip()
-    APPROVAL_KEYWORDS = {"ok", "cool", "great", "good", "yes", "y", "alright", "alrighty"}
+        draft = f.read().strip()
 
+    APPROVAL = {"ok","yes","y","great","good","cool","alright","alrighty"}
     while True:
-        print("\n CURRENT DRAFT:\n")
-        print(final, "\n")
-        resp = input("Edit it (type your feedback), or type one of [ok, cool, great, good, yes, y, alright, alrighty] to accept:\n").strip()
-        if not resp or resp.lower() in APPROVAL_KEYWORDS:
+        print("\n── CURRENT PROBLEM STATEMENT ──\n")
+        print(draft, "\n")
+        resp = input("Feedback or type ✅ to accept:\n").strip().lower()
+        if resp in APPROVAL or not resp:
             print("✅ Approved.\n")
             break
-        print("🤖 Regenerating draft based on your feedback…")
-        revision_prompt = (
+        # use your existing `answer(...)` helper to revise
+        revision = (
             "Please revise this Problem Statement Prompt to reflect the following feedback: "
-            f"“{resp}”\n\nOriginal Prompt:\n{final}"
+            f"“{resp}”\n\nOriginal Prompt:\n{draft}"
         )
-        final = answer(revision_prompt).strip()
-        print("\n UPDATED DRAFT \n")
+        draft = answer(revision).strip()
 
+    # save final
     with open(TRANS_EXTRACTOR_DRAFT_PATH, "w") as f:
-        f.write(final + "\n")
+        f.write(draft + "\n")
+    return draft
 
-    print(f"\n Final prompt saved to {TRANS_EXTRACTOR_DRAFT_PATH}\n")
 
-if __name__ == "__main__":
-    main()
+def run_brainstorm(problem_statement):
+    crew_br = Crew(
+        agents=[brainstormer_agent],
+        tasks=[brainstorm_task],
+        process=Process.sequential,
+        verbose=True
+    )
+    crew_br.kickoff(inputs={"problem_statement": problem_statement})
+    with open(BRAINSTORM_OUTPUT_PATH) as f:
+        result = f.read().strip()
+
+    print(f"\n✅ Brainstorm output written to {BRAINSTORM_OUTPUT_PATH}\n")
+    return result
+
+
+def main(transcript):
+    os.makedirs("output", exist_ok=True)
+    # Phase 1: extractor + manual loop
+    problem_statement = run_extractor(transcript1)
+    # Phase 2: brainstorming
+    brainstrom_list = run_brainstorm(problem_statement)
+    print(type(brainstrom_list))
+main(transcript1)
