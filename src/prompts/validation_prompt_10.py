@@ -6,7 +6,7 @@ VALIDATION_AGENT_PROMPT = """<validation_agent>
     <step>Review the following inputs:</step>
       • Creative Brief: {creative_brief}
       • Persona Profile: {persona_profile}
-      • Opportunity Map: {opportunity_map}
+      • Opportunity Map: {opportunity_result}
       • Wireframe & Prototype: {wireframe_output}
     <step>For each of the original UX goals and user needs (from the creative brief), test the design by:</step>
       1. **Heuristic Check** (clarity, accessibility, tone)

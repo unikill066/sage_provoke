@@ -1,21 +1,17 @@
-**Jobs-to-be-Done (JTBD):**
+**Jobs to be Done (JTBD):**
 
-1. George needs to communicate effectively with his family and friends despite his hearing impairment.
-2. George wants to use technology that is user-friendly, intuitive, and caters to the needs of senior citizens.
-3. George desires to have control over the technology he uses, particularly in managing the real-time captioning feature.
+1. Harold needs to communicate effectively with his loved ones and former students using his phone service.
+2. Harold needs to adjust the speed of captions on his phone service to match his reading pace.
+3. Harold needs an uncomplicated interface that doesn't overwhelm him and is easy to use.
 
 **Key Product/UI/UX Moments:**
 
-1. **Onboarding Experience:** The first interaction with the product should be simple, intuitive, and accessible. This includes a clear introduction to the real-time captioning feature and how to control it. The onboarding should include a walkthrough of the app's features with large fonts and clear visuals.
-
-2. **Real-Time Captioning:** As George speaks or receives audio, the app should provide accurate and real-time captions. This is a crucial moment as it directly addresses George's main need - effective communication despite his hearing impairment.
-
-3. **User Control:** George should be able to easily control when the captions appear and disappear. This gives him autonomy and makes the technology more empowering for him.
+1. First Use: Harold's first interaction with the Adaptive Caption Speed feature should be intuitive and straightforward. He should be able to easily understand how to adjust the caption speed according to his comfort.
+2. Regular Use: Harold should not experience any difficulty while using the Adaptive Caption Speed feature during his regular phone calls. The interface should remain simple and the caption speed adjustment should work seamlessly.
+3. Accessibility Needs: The captioning should be displayed in a large font against a contrasting background to improve readability for Harold. He should be able to easily navigate through the interface without feeling overwhelmed.
 
 **Success Metrics:**
 
-1. **User Satisfaction:** Measure user satisfaction through surveys and feedback forms. High satisfaction rates indicate that the product is meeting George's needs and expectations.
-
-2. **Accuracy of Real-Time Captions:** Monitor the accuracy of the real-time captions. High accuracy rates mean the product is effectively aiding George's communication needs.
-
-3. **Usage of the User Control Feature:** Track how often George uses the user control feature. Frequent usage indicates that George feels empowered and in control of his communication experience.
+1. User Satisfaction: Measure Harold's satisfaction with the Adaptive Caption Speed feature through user feedback and surveys. High user satisfaction would indicate the feature is meeting Harold's needs.
+2. Usage Frequency: Track how often Harold uses the Adaptive Caption Speed feature. Frequent usage would suggest that the feature is beneficial for Harold.
+3. Ease of Use: Evaluate the ease of use of the Adaptive Caption Speed feature through usability testing and time taken to complete tasks. A lower task completion time and positive usability test results would indicate a user-friendly interface.

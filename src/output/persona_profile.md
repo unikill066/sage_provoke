@@ -1,23 +1,13 @@
-**Persona Profile**
+Persona Profile:
 
-**Name:** George Williams
+**Name:** Harold
 
-**Bio:** George is a 68-year-old retiree living in Boston. He enjoys spending time with his family, reading about history, and playing chess. He is hard of hearing and relies on his smartphone for communication. George is tech-savvy for his age and is comfortable using apps on his smartphone. He is an active member of a local senior citizens' club where they often discuss the latest technology trends.
+**Bio:** Harold is a 68-year-old retired teacher living in a small town. He enjoys staying in touch with his former students and colleagues, and regularly uses phone services to communicate. He's not particularly tech-savvy and prefers simplicity in his tools. He has started experiencing a decline in his reading speed and visual acuity.
 
-**Motivations:** 
-1. George wants to stay connected with his family and friends despite his hearing impairment.
-2. He is motivated to use technology that can help him live a more comfortable life.
-3. George is keen on trying new technologies that can improve his communication experience.
+**Motivations:** Harold values clear and effective communication. He's motivated by staying connected with his loved ones and former students. He appreciates technology that is easy to use and enhances his communication experience.
 
-**Frustrations:** 
-1. George finds it frustrating when technology is not user-friendly, especially for senior citizens.
-2. He is often annoyed by inaccurate captions during phone calls, which leads to misunderstandings.
-3. George finds it challenging when the technology is not responsive or lags, disrupting his communication.
+**Frustrations:** Harold finds rapid conversations difficult to follow due to his slower reading speed. He gets frustrated when the interface of his communication tools is complex and non-intuitive. He often struggles with the current caption speed on his phone service, which sometimes makes his calls stressful.
 
-**Accessibility Needs:** 
-1. George needs a user interface that is simple and intuitive, with large fonts and clear visuals.
-2. He requires accurate real-time captioning to overcome his hearing impairment.
-3. George prefers an app that allows him to control when captions appear for better understanding.
+**Accessibility Needs:** Harold needs a feature that allows him to adjust the speed of captions to match his reading pace. He also needs clear, large-font captions against a contrasting background to improve readability. An uncomplicated interface that doesn't overwhelm him is essential.
 
-**Concept Relevance:** 
-The concept of Real-time Captioning with User Control is highly relevant to George. It addresses his need for a responsive, accurate, and user-controlled captioning system. This feature would significantly improve his communication experience by providing captions as soon as he speaks and giving him control over when the captions appear. This would make the technology more intuitive and empowering for him, significantly improving his user experience.
+**Concept Relevance:** The Adaptive Caption Speed feature is highly relevant to Harold. It has the potential to drastically improve his user experience by allowing him to adjust the caption speed according to his comfort. This feature can reduce his cognitive load and make his calls less stressful. However, it's crucial that the implementation of this feature doesn't complicate the interface, as that could increase Harold's frustration.

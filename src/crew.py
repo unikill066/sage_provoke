@@ -257,13 +257,13 @@ def run_wireframe(creative_brief, persona_profile):
         wireframe_output = f.read().strip()
     return wireframe_output
 
-def run_validation(creative_brief, persona_profile, opportunity_result, wireframe_output):
+def run_validation(creative_brief, persona_profile, opportunity_result, wireframe_result):
     crew_val = Crew(agents=[validation_agent], tasks=[validation_task], process=Process.sequential, verbose=True)
     crew_val.kickoff(inputs={
     "creative_brief": creative_brief,
     "persona_profile": persona_profile,
     "opportunity_result": opportunity_result,
-    "wireframe_output": wireframe_output,
+    "wireframe_result": wireframe_result,
     })
     with open(VALIDATION_REPORT_PATH) as f:
         validation_report = f.read().strip()
