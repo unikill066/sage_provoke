@@ -1,13 +1,13 @@
-Persona Profile:
+Persona Profile
 
-**Name:** Harold
+Name: Martha Stewart
 
-**Bio:** Harold is a 68-year-old retired teacher living in a small town. He enjoys staying in touch with his former students and colleagues, and regularly uses phone services to communicate. He's not particularly tech-savvy and prefers simplicity in his tools. He has started experiencing a decline in his reading speed and visual acuity.
+Bio: Martha is a 70-year-old retiree living in a quiet neighborhood in Florida. She enjoys reading, gardening, and staying connected with her children and grandchildren who live out-of-state. She uses her smartphone regularly to make calls, send texts, and use a few select apps. However, she is not very tech-savvy and often finds new technology intimidating and difficult to navigate. Martha has mild hearing loss and relies on phone captioning to understand her calls better.
 
-**Motivations:** Harold values clear and effective communication. He's motivated by staying connected with his loved ones and former students. He appreciates technology that is easy to use and enhances his communication experience.
+Motivations: Martha is motivated to stay connected with her loved ones and stay informed about the world around her. She wants to use her phone with ease and without feeling overwhelmed or stressed. She is also motivated to maintain her independence and not rely on others for help with technology.
 
-**Frustrations:** Harold finds rapid conversations difficult to follow due to his slower reading speed. He gets frustrated when the interface of his communication tools is complex and non-intuitive. He often struggles with the current caption speed on his phone service, which sometimes makes his calls stressful.
+Frustrations: Martha gets frustrated when technology is complex and not intuitive. She dislikes when apps are not designed with her needs in mind, such as small text size and fast-moving captions. She also gets frustrated when she misses information during calls due to her hearing loss.
 
-**Accessibility Needs:** Harold needs a feature that allows him to adjust the speed of captions to match his reading pace. He also needs clear, large-font captions against a contrasting background to improve readability. An uncomplicated interface that doesn't overwhelm him is essential.
+Accessibility Needs: Martha needs larger text sizes and clear, accurate captions to compensate for her hearing loss. She also needs a simple, intuitive user interface that does not require in-depth technological knowledge to navigate.
 
-**Concept Relevance:** The Adaptive Caption Speed feature is highly relevant to Harold. It has the potential to drastically improve his user experience by allowing him to adjust the caption speed according to his comfort. This feature can reduce his cognitive load and make his calls less stressful. However, it's crucial that the implementation of this feature doesn't complicate the interface, as that could increase Harold's frustration.
+Concept Relevance: The Real-Time Captioning Speed Adjustment feature would be highly relevant for Martha. She would benefit from being able to adjust the speed of the captions to match her reading speed. This would make the app more accommodating for her and reduce the stress she experiences when using technology. However, the implementation of this feature should be done in a way that does not increase the app's complexity or introduce performance issues, as that could deter Martha from using the app.

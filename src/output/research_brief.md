@@ -1,11 +1,21 @@
-**Competitor Product, UI/UX Patterns**
-- Dynamic Captioning, AI Media, and Syncwords are some competitors in the captioning market. However, it's unclear from the search results if they offer adaptive speed. More in-depth research is required to understand their UI/UX patterns.
+Research Brief:
 
-**User Reviews & Sentiment**
-- User reviews for Dynamic Captioning and other captioning services are generally positive, but none specifically mention the adaptive speed feature. More detailed analysis of user reviews is required to understand user sentiment towards this feature.
+1. Competitor Product, UI/UX Patterns:
+   - LEXI Text by AI-Media: Uses AI ASR technology to deliver over 99% accuracy.
+   - VoCaption by BroadStream: Uses Automatic Speech Recognition technology to create reliable and accurate video captions.
+   - SyncWords: Uses AI to make live captioning and subtitling faster, more efficient, and scalable.
 
-**Accessibility Risks & Complaints**
-- The search results did not directly address the risks associated with adaptive caption speed. However, several articles emphasized the importance of accurate captions for accessibility. It's possible that if the adaptive speed feature compromises the accuracy of captions, it could pose an accessibility risk.
+2. User Reviews & Sentiment:
+   - LEXI Text: User reviews not clearly found.
+   - VoCaption: User reviews not clearly found.
+   - SyncWords: Positive user reviews highlight the ease of use, quality of translation, and excellent customer service.
 
-**Best Practices & Recommendations**
-- While the search results did not specifically mention best practices for implementing adaptive speed, they did provide general best practices for captioning. These include ensuring captions are displayed against a contrasting background to improve visibility. It's likely that any implementation of adaptive speed should also adhere to these general best practices.
+3. Accessibility Risks & Complaints:
+   - Poor ASR captions are often inaccurate and incomplete, leading to accessibility complaints.
+   - The average digital accessibility compliance complaint is roughly $200K, indicating the high cost of non-compliance.
+
+4. Best Practices & Recommendations:
+   - Ensure a strong network connection and high-quality audio for accurate real-time captioning.
+   - Use clear timecodes and limit caption length to ensure captions fit within the screen space.
+   - Sync the captions to the video for a seamless user experience.
+   - Focus on accuracy and avoid including filler words unless they're important.

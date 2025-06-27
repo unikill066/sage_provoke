@@ -1,17 +1,14 @@
-**Jobs to be Done (JTBD):**
+Jobs-to-be-Done (JTBD):
+1. Martha needs to communicate with her family and friends via phone calls without missing any information due to her hearing loss.
+2. Martha needs to read captions at her own pace to understand the context of the call.
+3. Martha needs to navigate the app with ease, without feeling overwhelmed by complex features or small text sizes.
 
-1. Harold needs to communicate effectively with his loved ones and former students using his phone service.
-2. Harold needs to adjust the speed of captions on his phone service to match his reading pace.
-3. Harold needs an uncomplicated interface that doesn't overwhelm him and is easy to use.
+Key Product/UI/UX Moments:
+1. Caption Accuracy: The moment when Martha reads the captions and finds them accurate and complete. This is crucial as it directly affects her understanding of the conversation.
+2. Caption Speed Adjustment: The moment when Martha adjusts the speed of the captions to match her reading speed. This is key as it gives her control over the pace of the information flow.
+3. User-friendly Interface: The moment when Martha interacts with the app and finds it easy to navigate. This is important as it reduces her stress and makes her feel more confident about using the app.
 
-**Key Product/UI/UX Moments:**
-
-1. First Use: Harold's first interaction with the Adaptive Caption Speed feature should be intuitive and straightforward. He should be able to easily understand how to adjust the caption speed according to his comfort.
-2. Regular Use: Harold should not experience any difficulty while using the Adaptive Caption Speed feature during his regular phone calls. The interface should remain simple and the caption speed adjustment should work seamlessly.
-3. Accessibility Needs: The captioning should be displayed in a large font against a contrasting background to improve readability for Harold. He should be able to easily navigate through the interface without feeling overwhelmed.
-
-**Success Metrics:**
-
-1. User Satisfaction: Measure Harold's satisfaction with the Adaptive Caption Speed feature through user feedback and surveys. High user satisfaction would indicate the feature is meeting Harold's needs.
-2. Usage Frequency: Track how often Harold uses the Adaptive Caption Speed feature. Frequent usage would suggest that the feature is beneficial for Harold.
-3. Ease of Use: Evaluate the ease of use of the Adaptive Caption Speed feature through usability testing and time taken to complete tasks. A lower task completion time and positive usability test results would indicate a user-friendly interface.
+Success Metrics:
+1. Caption Accuracy Rate: The percentage of captions that accurately represent the spoken words. A high accuracy rate would indicate that the app is meeting Martha's needs and reducing her frustration.
+2. User Satisfaction Score: A measure of how satisfied Martha is with the app, particularly with the caption speed adjustment feature. A high score would indicate that the feature is useful and intuitive.
+3. App Usage Rate: The frequency of Martha's use of the app. An increase in usage rate over time would suggest that Martha is finding the app helpful and easy to use.

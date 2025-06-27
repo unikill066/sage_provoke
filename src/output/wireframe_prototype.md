@@ -1,45 +1,32 @@
-## User Journey
+User Journey:
 
-1. **Launch App:** Harold opens the phone captioning service on his device.
-2. **Onboarding:** Harold is introduced to the Adaptive Caption Speed feature through a brief tutorial or walkthrough.
-3. **Access Feature:** Harold navigates to the settings page where the Adaptive Caption Speed controls are located.
-4. **Adjust Speed:** Harold uses a simple slider control to adjust the speed of the captions according to his reading pace.
-5. **Confirm Changes:** Harold saves his changes and returns to the main interface.
-6. **Use Feature:** Harold makes a call and experiences the adjusted caption speed.
+1. George opens the app and is welcomed by a simple, uncluttered home screen.
+2. He sees a clear and large "Get Started" button and clicks on it.
+3. George is then guided through a straightforward onboarding process, where he sets up his preferences for captions.
+4. After finishing the onboarding, George is taken to the main video browsing screen.
+5. He selects a video, and the video player opens with captions enabled as per his preferences.
+6. George enjoys the video with fast, accurate, and synchronized captions.
 
-## Text-Based Wireframe Specs
+Wireframe Specs:
 
-1. **Launch Screen**
-   - [Title] "Welcome to [App Name]"
-   - [Button] "Start" (Figma component: Button/Primary)
-   - [Text] Brief intro to the app (Figma component: Text/Body)
+1. Home Screen:
+   - A clean screen with the app logo at the top center (Figma Component: App_Logo).
+   - A large "Get Started" button in the center of the screen (Figma Component: Primary_Button). Annotation: The button should be large and clear to reduce cognitive load for George.
+   - Design Token: Large_Font_Size for the button text to ensure visibility for George.
 
-2. **Onboarding Screen**
-   - [Title] "New Feature: Adaptive Caption Speed"
-   - [Text] Brief explanation of the feature (Figma component: Text/Body)
-   - [Image] Placeholder for a visual tutorial (Figma component: Image/Tutorial)
-   - [Button] "Next" (Figma component: Button/Secondary)
+2. Onboarding Screens:
+   - Step-by-step guide screens with large text and clear instructions (Figma Component: Guide_Screens). Annotation: The steps should be simple and clear to make the onboarding process user-friendly for George.
+   - A "Next" button on each guide screen to move to the next step (Figma Component: Secondary_Button).
+   - Design Token: Large_Font_Size for the guide text and button text.
 
-3. **Settings Screen**
-   - [Title] "Settings" (Figma component: Text/Title)
-   - [Text] "Adaptive Caption Speed" (Figma component: Text/Body)
-   - [Slider] Placeholder for speed control slider, marked with "slower" on the left and "faster" on the right (Figma component: Slider/Speed Control)
-   - [Button] "Save Changes" (Figma component: Button/Primary)
+3. Video Browsing Screen:
+   - A grid view of available videos with large thumbnails (Figma Component: Video_Grid). Annotation: A grid view will allow George to easily browse through the videos.
+   - A search bar at the top for finding specific videos (Figma Component: Search_Bar).
+   - Design Token: Medium_Font_Size for the video titles and search bar text.
 
-4. **Main Interface**
-   - [Text] Placeholder for captions (Figma component: Text/Caption)
-   - [Button] "Make a Call" (Figma component: Button/Primary)
+4. Video Player Screen:
+   - A video player that covers the top half of the screen (Figma Component: Video_Player).
+   - Captions appear at the bottom of the video player as per the user's preferences (Figma Component: Captions). Annotation: Fast and accurate captions are crucial for George's satisfaction.
+   - Design Token: Customizable_Font_Size, Font_Color, and Caption_Placement for the caption settings.
 
-## Annotations
-
-- Use large, clear fonts against a contrasting background to improve readability for Harold.
-- Keep the interface simple and intuitive to reduce cognitive load.
-- The speed control slider should have a wide range to accommodate various reading speeds.
-- The "Save Changes" button should provide instant feedback to confirm that changes have been saved.
-
-## Figma/Export Placeholders
-
-- [Placeholder] For importing screen designs into Figma (Figma component: Screens/Import)
-- [Placeholder] For exporting final designs from Figma (Figma component: Screens/Export)
-
-Each component placeholder should be replaced with the actual design elements during the design phase. The wireframe specs and user journey aim to provide a seamless, user-friendly experience for Harold, making his calls less stressful and more enjoyable.
+These wireframe specs aim to create a user-friendly interface and enhance the caption speed to provide a satisfying user experience for George and users like him.

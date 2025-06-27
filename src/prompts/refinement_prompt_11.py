@@ -4,7 +4,7 @@ REFINEMENT_AGENT_PROMPT = """<refinement_agent>
   </role>
   <instructions>
     <step>Read the current design outputs:</step>
-      • Wireframes & Prototype: {wireframe_output}
+      • Wireframes & Prototype: {validation_report}
       • Validation Report: {validation_report}
     <step>Suggest refinements to make the design sprint-ready by:</step>
       - Proposing UI tweaks (layout adjustments, icon clarity, tap zones)

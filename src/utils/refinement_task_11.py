@@ -4,7 +4,7 @@ from constants import REFINEMENT_OUTPUT_PATH
 
 refinement_task = Task(
     description=(
-        "Wireframes & Prototype:\n{wireframe_output}\n\n"
+        "Wireframes & Prototype:\n{validation_report}\n\n"
         "Validation Report:\n{validation_report}\n\n"
         "As the Refinement Agent, suggest UI tweaks, copy improvements, and A/B test variants to make this design sprint-ready."
     ),

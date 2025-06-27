@@ -13,7 +13,7 @@ SPRINT_PLANNING_AGENT_PROMPT = """<sprint_planning_agent>
     </step>
 
     <step>Flag any high-risk items or new workstreams that need extra attention.</step>
-    <step>Export the plan in {target_tool}-compatible format (e.g., Jira, Linear, or custom CSV template).</step>
+    <step>Export the plan in {opportunity_result}-compatible format (e.g., Jira, Linear, or custom CSV template).</step>
   </instructions>
   <output_format>
     <sprint_plan>

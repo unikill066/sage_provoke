@@ -1,77 +1,50 @@
 # Creative Brief
 
-## Problem Statement
+## Project Overview
 
-The core problem to address is the need to improve the user experience for older adults using our phone captioning services, particularly those over 65 years old. The goal is to reduce the cognitive load, speed up perceived responsiveness, and make onboarding more intuitive. We aim to make the user experience empowering and not overwhelming, taking into account emotional drivers of our users who desire simplicity, confidence, and control, especially during stressful calls.
-
-## Selected Concept
-
-### Concept 2: Adaptive Caption Speed
-
-#### Benefits
-
-Allowing users to adjust the speed of captions can improve the user experience, especially during stressful calls. Slower speeds can help users who read slowly, while faster speeds can keep up with rapid conversations.
-
-#### Drawbacks
-
-Implementing this feature might increase the complexity of the interface and confuse some users.
-
-#### Technical Feasibility
-
-Medium. It requires changes in both the front-end (user controls) and back-end (captioning system).
-
-#### Dependencies
-
-Development team, user feedback, and testing.
-
-#### Success Metrics
-
-Reduced user complaints about caption speed, increased user satisfaction scores, increased usage.
-
-## Persona Profile
-
-**Name:** Harold
-
-**Bio:** Harold is a 68-year-old retired teacher living in a small town. He enjoys staying in touch with his former students and colleagues, and regularly uses phone services to communicate. He's not particularly tech-savvy and prefers simplicity in his tools. He has started experiencing a decline in his reading speed and visual acuity.
-
-**Motivations:** Harold values clear and effective communication. He's motivated by staying connected with his loved ones and former students. He appreciates technology that is easy to use and enhances his communication experience.
-
-**Frustrations:** Harold finds rapid conversations difficult to follow due to his slower reading speed. He gets frustrated when the interface of his communication tools is complex and non-intuitive. He often struggles with the current caption speed on his phone service, which sometimes makes his calls stressful.
-
-**Accessibility Needs:** Harold needs a feature that allows him to adjust the speed of captions to match his reading pace. He also needs clear, large-font captions against a contrasting background to improve readability. An uncomplicated interface that doesn't overwhelm him is essential.
-
-## Prioritization Summary
-
-Concept 2: Adaptive Caption Speed could be ranked medium-high in terms of priority. It has medium technical feasibility but could significantly improve the user experience and accessibility, aligning with current market trends. However, without specific data on the costs associated with implementing this feature, it's difficult to accurately calculate the ROI.
-
-## Research Brief
-
-Competitor products, UI/UX patterns, user reviews & sentiment, accessibility risks & complaints, and best practices & recommendations should be thoroughly researched to understand the market and user expectations better.
-
-## Inspiration Board
-
-UI patterns for adjustable caption speed from products like ClearCaptions, Caption.Ed, and Teltex GLT Captioning Tablet can provide valuable insights for designing the Adaptive Caption Speed feature.
-
-## Opportunity Map
-
-The Adaptive Caption Speed feature should be designed keeping in mind the Jobs to be Done (JTBD), key product/UI/UX moments, and success metrics.
+We are aiming to improve the user experience of our captioning service, focusing on enhancing the caption speed, simplifying the interface, and making the onboarding process more user-friendly, particularly for users over the age of 65.
 
 ## UX Goals
 
-The UX goals for the Adaptive Caption Speed feature are:
+1. Reduce cognitive load by simplifying the interface and onboarding process.
+2. Increase perceived responsiveness by improving caption speed.
+3. Make the whole experience empowering rather than overwhelming for the user.
 
-1. Intuitive and straightforward first use.
-2. Seamless regular use without any difficulty.
-3. Meeting accessibility needs with clear, large-font captions against a contrasting background and an uncomplicated interface.
+## Key Persona
 
-## KPIs
+**George Thompson**
 
-The success of the Adaptive Caption Speed feature can be measured through the following KPIs:
+- A 70-year-old retired telecom security expert who uses captioning services regularly.
+- Motivated by his desire to stay connected with the world and continue learning.
+- Frustrated with slow captioning services and complicated interfaces.
+- Needs fast, accurate, and synchronized captions and a user-friendly interface.
 
-1. User Satisfaction: Measure user satisfaction through feedback and surveys.
-2. Usage Frequency: Track how often users use the Adaptive Caption Speed feature.
-3. Ease of Use: Evaluate the ease of use through usability testing and time taken to complete tasks.
+## Concept
+
+**Improved Caption Speed**
+
+- Benefits: Faster captions will enhance the user experience by providing real-time feedback.
+- Drawbacks: Might increase the server load and be hard for some users to follow.
+- Technical Feasibility: Medium. Depends on the current backend architecture.
+- Dependencies: Requires backend developers to optimize the captioning algorithm.
+- Success Metrics: Decrease in user complaints about slow caption speed, increase in user satisfaction rates.
+
+## Key Product/UI/UX Moments
+
+1. George experiences satisfaction when the captions are fast, accurate, and synchronized with the video.
+2. George feels confident when he can easily navigate the user-friendly interface.
+3. George appreciates when the onboarding process is straightforward and guides him through each step.
+
+## Success Metrics
+
+1. Decrease in user complaints about slow caption speed.
+2. Increase in user satisfaction rates.
+3. Increase in user engagement.
 
 ## Design Guidance
 
-The design of the Adaptive Caption Speed feature should focus on simplicity and intuitiveness. It should allow users to easily adjust the speed of captions according to their comfort without complicating the interface. The implementation of this feature should not increase the cognitive load for the users but rather make their calls less stressful.
+1. Focus on accuracy and synchronization of captions with the video.
+2. Ensure the interface is user-friendly with large, clear text and a simple, uncluttered design.
+3. Make the onboarding process straightforward and guide the user through each step.
+4. Consider the overall user experience with the video player and on-screen text.
+5. Allow users to customize caption settings, like the font size, color, and placement.

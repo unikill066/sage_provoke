@@ -5,7 +5,7 @@ from constants import SPRINT_PLANNING_OUTPUT_PATH
 sprint_planning_task = Task(
     description=(
         "User Stories:\n{user_stories}\n\n"
-        "Generate a prioritized, role-based sprint plan, flag dependencies/risks, and export for {target_tool}."
+        "Generate a prioritized, role-based sprint plan, flag dependencies/risks, and export for {opportunity_result}."
     ),
     agent=sprint_planning_agent,
     expected_output="A sprint plan with phases, roles, stories, risks, and export format.",
