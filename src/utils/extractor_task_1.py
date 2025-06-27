@@ -1,4 +1,3 @@
-# transcriptins from the meeting
 from crewai import Task
 from agents.extractor_agent_1 import extractor_agent
 

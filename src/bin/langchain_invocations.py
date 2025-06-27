@@ -1,10 +1,6 @@
-"""
-"""
-
-# imports
 from dotenv import load_dotenv
 from langchain_openai import ChatOpenAI
-# load environment variables
+
 load_dotenv()
 
 def answer(question):
