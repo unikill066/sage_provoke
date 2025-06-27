@@ -2,7 +2,7 @@ import React from 'react';
 import { Button } from './ui/button';
 import { Input } from './ui/input';
 
-export default function InputBar({ input, setInput, isProcessing, currentAgentIndex, modalOpen, isWorkflowComplete, agents, messages, handleSubmit, goToNextPhase }) {
+export default function InputBar({ input, setInput, isProcessing, currentAgentIndex, modalOpen, isWorkflowComplete, agents, messages, handleSubmit }) {
   return (
     <form
       onSubmit={handleSubmit}
@@ -31,16 +31,6 @@ export default function InputBar({ input, setInput, isProcessing, currentAgentIn
         >
           {isProcessing ? "Processing..." : "Submit"}
         </Button>
-        {!isWorkflowComplete && currentAgentIndex < agents.length - 1 && currentAgentIndex !== 2 && (
-          <Button
-            type="button"
-            onClick={goToNextPhase}
-            className="bg-gradient-to-r from-emerald-600 to-emerald-700 hover:from-emerald-700 hover:to-emerald-800 text-white px-6 py-2 rounded-lg font-medium transition-all duration-200 shadow-lg hover:shadow-xl"
-            disabled={isProcessing || (currentAgentIndex === 0 && messages.filter(m => m.sender === 'user' && m.type === 'user-input').length === 0)}
-          >
-            Move onto {agents[currentAgentIndex + 1]?.name} ({currentAgentIndex + 1}/5)
-          </Button>
-        )}
       </div>
     </form>
   );

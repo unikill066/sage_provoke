@@ -1,5 +1,5 @@
 import React from 'react';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { Card, CardContent } from './components/ui/card';
 import { Badge } from './components/ui/badge';
 import { Button } from './components/ui/button';
@@ -13,6 +13,7 @@ import DesignOptionsModal from './components/DesignOptionsModal';
 import UserStoriesManager from './components/UserStoriesManager';
 import UserStoriesDrawer from './components/UserStoriesDrawer';
 import WelcomeScreen from './components/WelcomeScreen';
+import TabbedResults from './components/TabbedResults';
 import { agents } from './constants';
 import { getConfidenceColor, truncateText, parseUserStoriesFromMessages } from './utils/chatUtils';
 import useChatPhases from './hooks/useChatPhases';
@@ -56,10 +57,123 @@ export default function App() {
   const chat = useChatPhases(initialMessage);
   const [userStoriesDrawerOpen, setUserStoriesDrawerOpen] = React.useState(false);
   const [showWelcome, setShowWelcome] = React.useState(shouldShowWelcomeScreen());
+  const [showTabs, setShowTabs] = React.useState(false);
+  const [phaseResults, setPhaseResults] = React.useState([]);
+  const [processingPhases, setProcessingPhases] = React.useState([]);
+
+  async function makeAllAPICalls(initialPrompt) {
+    setProcessingPhases([0, 1, 2, 3, 4]); // Mark all phases as processing
+    const results = [];
+    
+    try {
+      // Phase 1: Strategic Planning
+      const response1 = await fetch('http://localhost:8000/extract', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ transcript: initialPrompt, phase: 1 })
+      });
+      const data1 = await response1.json();
+      results[0] = data1.prompt || 'No response received';
+      setPhaseResults(prev => {
+        const newResults = [...prev];
+        newResults[0] = results[0];
+        return newResults;
+      });
+      setProcessingPhases(prev => prev.filter(p => p !== 0));
+
+      // Phase 2: Business Requirements (using Phase 1 results)
+      const response2 = await fetch('http://localhost:8000/extract', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ 
+          transcript: `Based on the strategic analysis: ${results[0]}\n\nGenerate detailed business requirements and specifications.`,
+          phase: 2 
+        })
+      });
+      const data2 = await response2.json();
+      results[1] = data2.prompt || 'No response received';
+      setPhaseResults(prev => {
+        const newResults = [...prev];
+        newResults[1] = results[1];
+        return newResults;
+      });
+      setProcessingPhases(prev => prev.filter(p => p !== 1));
+
+      // Phase 3: Design & UX (using Phase 2 results)
+      const response3 = await fetch('http://localhost:8000/extract', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ 
+          transcript: `Based on the business requirements: ${results[1]}\n\nGenerate 3 design and UX approaches.`,
+          phase: 3 
+        })
+      });
+      const data3 = await response3.json();
+      results[2] = data3.prompt || 'No response received';
+      setPhaseResults(prev => {
+        const newResults = [...prev];
+        newResults[2] = results[2];
+        return newResults;
+      });
+      setProcessingPhases(prev => prev.filter(p => p !== 2));
+
+      // Phase 4: Feature Architecture (using Phase 3 results)
+      const response4 = await fetch('http://localhost:8000/extract', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ 
+          transcript: `Based on the design approach: ${results[2]}\n\nGenerate feature architecture and functionality planning.`,
+          phase: 4 
+        })
+      });
+      const data4 = await response4.json();
+      results[3] = data4.prompt || 'No response received';
+      setPhaseResults(prev => {
+        const newResults = [...prev];
+        newResults[3] = results[3];
+        return newResults;
+      });
+      setProcessingPhases(prev => prev.filter(p => p !== 3));
+
+      // Phase 5: User Stories (using Phase 4 results)
+      const response5 = await fetch('http://localhost:8000/extract', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ 
+          transcript: `Based on the feature architecture: ${results[3]}\n\nGenerate user stories and acceptance criteria.`,
+          phase: 5 
+        })
+      });
+      const data5 = await response5.json();
+      results[4] = data5.prompt || 'No response received';
+      setPhaseResults(prev => {
+        const newResults = [...prev];
+        newResults[4] = results[4];
+        return newResults;
+      });
+      setProcessingPhases(prev => prev.filter(p => p !== 4));
+
+      // Add all results to chat messages
+      results.forEach((result, index) => {
+        const assistantMessage = {
+          id: Date.now() + index + 1,
+          text: result,
+          sender: 'assistant',
+          timestamp: new Date().toLocaleTimeString()
+        };
+        chat.setMessages(prev => [...prev, assistantMessage]);
+      });
+
+    } catch (error) {
+      console.error('Error making API calls:', error);
+      setProcessingPhases([]);
+    }
+  }
 
   async function handleSubmit(e) {
     e.preventDefault();
     if (!chat.input.trim() || chat.isProcessing) return;
+    
     const userMessage = {
       id: Date.now(),
       text: chat.input,
@@ -67,150 +181,59 @@ export default function App() {
       type: 'user-input',
       timestamp: new Date().toLocaleTimeString()
     };
+    
     chat.setMessages(prev => [...prev, userMessage]);
     chat.setInput("");
     chat.setIsProcessing(true);
-    try {
-      const response = await fetch('http://localhost:8000/extract', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ transcript: userMessage.text, phase: chat.currentAgentIndex + 1 })
-      });
-      const data = await response.json();
-      const assistantMessage = {
-        id: Date.now() + 1,
-        text: data.prompt || 'No response received',
-        sender: 'assistant',
-        timestamp: new Date().toLocaleTimeString()
-      };
-      chat.setMessages(prev => [...prev, assistantMessage]);
-      chat.setCurrentPrompt(prev => prev + '\n\nUser: ' + userMessage.text + '\nAssistant: ' + (data.prompt || ''));
-    } catch {
-      const errorMessage = {
-        id: Date.now() + 1,
-        text: 'Sorry, there was an error processing your request.',
-        sender: 'assistant',
-        timestamp: new Date().toLocaleTimeString()
-      };
-      chat.setMessages(prev => [...prev, errorMessage]);
-    } finally {
-      chat.setIsProcessing(false);
-    }
-  }
-
-  async function goToNextPhase() {
-    if (chat.currentAgentIndex < agents.length - 1) {
-      const nextPhase = chat.currentAgentIndex + 1;
-      chat.setCurrentAgentIndex(nextPhase);
-      if (nextPhase === 1) {
-        chat.setIsProcessing(true);
-        try {
-          const response = await fetch('http://localhost:8000/extract', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-              transcript: 'Generate business requirements based on the strategy context',
-              phase: 2
-            }),
-          });
-          const data = await response.json();
-          const assistantMessage = {
-            id: Date.now(),
-            text: data.prompt || 'No business requirements generated',
-            sender: 'assistant',
-            timestamp: new Date().toLocaleTimeString()
-          };
-          chat.setMessages(prev => [...prev, assistantMessage]);
-          chat.setCurrentPrompt(prev => prev + '\n\nAssistant: ' + (data.prompt || ''));
-        } catch {
-          const errorMessage = {
-            id: Date.now(),
-            text: 'Failed to generate business requirements.',
-            sender: 'assistant',
-            timestamp: new Date().toLocaleTimeString()
-          };
-          chat.setMessages(prev => [...prev, errorMessage]);
-        } finally {
-          chat.setIsProcessing(false);
-        }
-      }
-      else if (nextPhase === 2) {
-        chat.setIsProcessing(true);
-        try {
-          const response = await fetch('http://localhost:8000/extract', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-              transcript: 'Generate 3 design and UX approaches',
-              phase: 3
-            }),
-          });
-          const data = await response.json();
-          let designOptions;
-          if (Array.isArray(data.prompt)) {
-            designOptions = data.prompt;
-          } else {
-            designOptions = parseDesignOptions(data.prompt);
-          }
-          if (!designOptions.length || designOptions.length < 3) {
-            const mockOptions = [
-              {
-                text: "Minimalist & Clean Design",
-                confidence: 95,
-                description: "A clean, minimalist approach focusing on simplicity and clarity. Uses plenty of white space, typography hierarchy, and subtle animations. Perfect for professional applications where clarity and ease of use are paramount. Features include: clean typography, minimal color palette, intuitive navigation, and subtle micro-interactions.",
-                previewClass: "bg-gradient-to-br from-slate-50 to-slate-100"
-              },
-              {
-                text: "Bold & Modern Interface",
-                confidence: 88,
-                description: "A bold, modern design with vibrant colors and dynamic elements. Emphasizes visual impact and user engagement through bold typography, gradient backgrounds, and interactive elements. Ideal for applications targeting younger demographics or creative industries. Features include: vibrant color schemes, bold typography, interactive animations, and card-based layouts.",
-                previewClass: "bg-gradient-to-br from-purple-50 to-purple-100"
-              },
-              {
-                text: "Accessibility-First Design",
-                confidence: 92,
-                description: "A design approach that prioritizes accessibility and inclusivity from the ground up. Features high contrast ratios, clear navigation, keyboard-friendly interactions, and screen reader compatibility. Perfect for applications that need to serve diverse user populations. Features include: high contrast colors, large touch targets, clear navigation, and comprehensive accessibility features.",
-                previewClass: "bg-gradient-to-br from-blue-50 to-blue-100"
-              }
-            ];
-            chat.setModalOptions(mockOptions.sort((a, b) => b.confidence - a.confidence));
-          } else {
-            chat.setModalOptions(designOptions.sort((a, b) => b.confidence - a.confidence));
-          }
-          chat.setModalPrompt("Choose a design approach");
-          chat.setModalOpen(true);
-        } catch {
-          const errorMessage = {
-            id: Date.now(),
-            text: 'Failed to generate design options.',
-            sender: 'assistant',
-            timestamp: new Date().toLocaleTimeString()
-          };
-          chat.setMessages(prev => [...prev, errorMessage]);
-        } finally {
-          chat.setIsProcessing(false);
-        }
-      }
-    }
-  }
-
-  async function handleModalSelect(selectedOption, index) {
-    const assistantMessage = {
-      id: Date.now(),
-      text: `Selected Design Option ${index + 1}: ${selectedOption.text}\n\n${selectedOption.description}`,
-      sender: 'assistant',
-      timestamp: new Date().toLocaleTimeString()
-    };
-    chat.setMessages(prev => [...prev, assistantMessage]);
-    chat.setCurrentPrompt(prev => prev + '\n\nAssistant: Selected Design - ' + selectedOption.text);
     
-    chat.setModalOpen(false);
-    chat.setCurrentAgentIndex(3);
+    // If this is the first prompt, switch to tabs view and make all API calls
+    if (chat.messages.filter(m => m.sender === 'user' && m.type === 'user-input').length === 0) {
+      setShowTabs(true);
+      await makeAllAPICalls(chat.input);
+    } else {
+      // For subsequent prompts, just make a single call for the current phase
+      try {
+        const response = await fetch('http://localhost:8000/extract', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ transcript: chat.input, phase: chat.currentAgentIndex + 1 })
+        });
+        const data = await response.json();
+        
+        const assistantMessage = {
+          id: Date.now() + 1,
+          text: data.prompt || 'No response received',
+          sender: 'assistant',
+          timestamp: new Date().toLocaleTimeString()
+        };
+        
+        chat.setMessages(prev => [...prev, assistantMessage]);
+        chat.setCurrentPrompt(prev => prev + '\n\nUser: ' + chat.input + '\nAssistant: ' + (data.prompt || ''));
+        
+        // Update the result for the current phase
+        setPhaseResults(prev => {
+          const newResults = [...prev];
+          newResults[chat.currentAgentIndex] = data.prompt || 'No response received';
+          return newResults;
+        });
+        
+      } catch {
+        const errorMessage = {
+          id: Date.now() + 1,
+          text: 'Sorry, there was an error processing your request.',
+          sender: 'assistant',
+          timestamp: new Date().toLocaleTimeString()
+        };
+        chat.setMessages(prev => [...prev, errorMessage]);
+      }
+    }
+    
+    chat.setIsProcessing(false);
   }
 
   const handleStartAnalysis = () => {
     setShowWelcome(false);
-    markWelcomeScreenAsShown(); // Mark as shown for 24 hours
+    markWelcomeScreenAsShown();
   };
 
   return (
@@ -229,40 +252,20 @@ export default function App() {
         userStoriesCount={chat.currentAgentIndex >= 4 ? 3 : 0}
       />
       
-      {showWelcome && chat.currentAgentIndex === 0 && chat.messages.filter(m => m.sender === 'user' && m.type === 'user-input').length === 0 ? (
-        <WelcomeScreen onStart={handleStartAnalysis} />
-      ) : (
-        <main className="flex-1 flex flex-col items-center w-full">
-          <ScrollArea className="w-full max-w-5xl flex-1 px-6 py-8 mx-auto">
-            <ChatArea
-              messages={chat.messages}
-              currentAgentIndex={chat.currentAgentIndex}
-              isProcessing={chat.isProcessing}
-              getConfidenceColor={getConfidenceColor}
-              expandedCard={chat.expandedCard}
-              expandedDescriptions={chat.expandedDescriptions}
-              toggleCardExpansion={chat.setExpandedCard}
-              toggleDescriptionExpansion={chat.setExpandedDescriptions}
-              truncateText={truncateText}
-              motion={motion}
-              Badge={Badge}
-              Card={Card}
-              CardContent={CardContent}
-              messagesEndRef={chat.messagesEndRef}
-            />
-          </ScrollArea>
-          <DesignOptionsModal
-            modalOpen={chat.modalOpen}
-            setModalOpen={chat.setModalOpen}
-            modalOptions={chat.modalOptions}
-            modalPrompt={chat.modalPrompt}
+      <AnimatePresence mode="wait">
+        {showWelcome && chat.currentAgentIndex === 0 && chat.messages.filter(m => m.sender === 'user' && m.type === 'user-input').length === 0 ? (
+          <WelcomeScreen key="welcome" onStart={handleStartAnalysis} />
+        ) : showTabs ? (
+          <TabbedResults
+            key="tabs"
+            phaseResults={phaseResults}
+            currentAgentIndex={chat.currentAgentIndex}
+            isProcessing={chat.isProcessing}
+            processingPhases={processingPhases}
             expandedCard={chat.expandedCard}
             expandedDescriptions={chat.expandedDescriptions}
-            toggleCardExpansion={chat.toggleCardExpansion}
+            toggleCardExpansion={chat.setExpandedCard}
             toggleDescriptionExpansion={chat.setExpandedDescriptions}
-            handleModalSelect={handleModalSelect}
-            getConfidenceColor={getConfidenceColor}
-            truncateText={truncateText}
             motion={motion}
             Separator={Separator}
             Card={Card}
@@ -270,19 +273,42 @@ export default function App() {
             Badge={Badge}
             Button={Button}
           />
-          <InputBar
-            input={chat.input}
-            setInput={chat.setInput}
-            isProcessing={chat.isProcessing}
-            currentAgentIndex={chat.currentAgentIndex}
-            modalOpen={chat.modalOpen}
-            isWorkflowComplete={chat.currentAgentIndex >= agents.length}
-            agents={agents}
-            messages={chat.messages}
-            handleSubmit={handleSubmit}
-            goToNextPhase={goToNextPhase}
-          />
-        </main>
+        ) : (
+          <main key="chat" className="flex-1 flex flex-col items-center w-full">
+            <ScrollArea className="w-full max-w-5xl flex-1 px-6 py-8 mx-auto">
+              <ChatArea
+                messages={chat.messages}
+                currentAgentIndex={chat.currentAgentIndex}
+                isProcessing={chat.isProcessing}
+                getConfidenceColor={getConfidenceColor}
+                expandedCard={chat.expandedCard}
+                expandedDescriptions={chat.expandedDescriptions}
+                toggleCardExpansion={chat.setExpandedCard}
+                toggleDescriptionExpansion={chat.setExpandedDescriptions}
+                truncateText={truncateText}
+                motion={motion}
+                Badge={Badge}
+                Card={Card}
+                CardContent={CardContent}
+                messagesEndRef={chat.messagesEndRef}
+              />
+            </ScrollArea>
+          </main>
+        )}
+      </AnimatePresence>
+      
+      {!showWelcome && (
+        <InputBar
+          input={chat.input}
+          setInput={chat.setInput}
+          isProcessing={chat.isProcessing}
+          currentAgentIndex={chat.currentAgentIndex}
+          modalOpen={false}
+          isWorkflowComplete={chat.currentAgentIndex >= agents.length}
+          agents={agents}
+          messages={chat.messages}
+          handleSubmit={handleSubmit}
+        />
       )}
       
       <UserStoriesDrawer
