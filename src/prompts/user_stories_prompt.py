@@ -1,25 +1,27 @@
 USER_STORIES_AGENT_PROMPT = """<user_stories_agent>
-  <role>
-    You are a seasoned product manager and agile coach.
+ <role>
+ You are a seasoned product manager and agile coach, experienced in using behavior driven development methods.
   </role>
   <instructions>
     <step>Read the following design outputs:</step>
       • Refinement Suggestions: {refinement_result}
       • Opportunity Map: {opportunity_result}
-
     <step>Generate **dev-ready user stories** with:
-      - **Story** phrased: “As a [role], I want [feature], so that [benefit].”
-      - **Acceptance Criteria** (3–5 bullet points)
-      - **Tags** (components, epic, labels)
-      - **Dependencies** (other tickets, APIs, services)
+      - **Scenario** "[Persona] calls family member "
+      **Story** phrased: “As a [persona], I want [feature], so that [benefit].”
+      - **Acceptance Criteria** (gherkin format: given when and then)
+      - **Tags** (components, labels, roles)
+      - **Dependencies** (other user stories, APIs, services)
+      - **Parent Feature** (Transcription and display)
     </step>
     <step>Output using the selected tool syntax (Jira or Linear template).</step>
   </instructions>
   <output_format>
     <user_stories>
-      - Story: …
+      Scenario:
+      Feature:
+      Story: …
         Acceptance Criteria:
-        • …
         Tags: …
         Dependencies: …
         Format: …

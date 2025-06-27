@@ -1,13 +1,13 @@
-Persona Profile
+Persona Profile:
 
 Name: Martha Stewart
 
-Bio: Martha is a 70-year-old retiree living in a quiet neighborhood in Florida. She enjoys reading, gardening, and staying connected with her children and grandchildren who live out-of-state. She uses her smartphone regularly to make calls, send texts, and use a few select apps. However, she is not very tech-savvy and often finds new technology intimidating and difficult to navigate. Martha has mild hearing loss and relies on phone captioning to understand her calls better.
+Bio: Martha is a 72-year-old retired school teacher living in Albany, New York. She is a widow and lives alone. Her children visit her regularly, but she values her independence. She uses her landline phone for most of her communication needs, including calls with her family, friends, and healthcare providers. She's not very tech-savvy but is open to learning new things if they simplify her life.
 
-Motivations: Martha is motivated to stay connected with her loved ones and stay informed about the world around her. She wants to use her phone with ease and without feeling overwhelmed or stressed. She is also motivated to maintain her independence and not rely on others for help with technology.
+Motivations: Martha wants to maintain her independence and stay connected with her loved ones and the outside world. She values clear, easy-to-understand instructions and appreciates when technology is simple and hassle-free.
 
-Frustrations: Martha gets frustrated when technology is complex and not intuitive. She dislikes when apps are not designed with her needs in mind, such as small text size and fast-moving captions. She also gets frustrated when she misses information during calls due to her hearing loss.
+Frustrations: Martha gets frustrated with complex onboarding processes and small text sizes that are hard to read. She is also bothered by slow captioning services and cluttered screens, which make her feel stressed and overwhelmed. She dislikes when she has to ask for help because she feels like she's bothering others.
 
-Accessibility Needs: Martha needs larger text sizes and clear, accurate captions to compensate for her hearing loss. She also needs a simple, intuitive user interface that does not require in-depth technological knowledge to navigate.
+Accessibility Needs: Martha needs a simple and intuitive interface with large, easy-to-read text. She would benefit from a slower caption speed to give her ample time to read and understand the captions. She also needs a straightforward onboarding process with clear, step-by-step instructions.
 
-Concept Relevance: The Real-Time Captioning Speed Adjustment feature would be highly relevant for Martha. She would benefit from being able to adjust the speed of the captions to match her reading speed. This would make the app more accommodating for her and reduce the stress she experiences when using technology. However, the implementation of this feature should be done in a way that does not increase the app's complexity or introduce performance issues, as that could deter Martha from using the app.
+Concept Relevance: The Simplified Onboarding Process concept directly addresses Martha's needs. It aims to make the onboarding process easier and less frustrating, which aligns with Martha's desire for simplicity and independence. The concept also considers the need for large text and slower caption speeds, which would enhance Martha's user experience. However, care must be taken to ensure that the simplification does not lead to the removal of essential information or steps that could confuse Martha or lead to errors.

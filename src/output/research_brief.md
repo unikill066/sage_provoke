@@ -1,21 +1,21 @@
-Research Brief:
+Research Brief: Simplified Onboarding Process
 
-1. Competitor Product, UI/UX Patterns:
-   - LEXI Text by AI-Media: Uses AI ASR technology to deliver over 99% accuracy.
-   - VoCaption by BroadStream: Uses Automatic Speech Recognition technology to create reliable and accurate video captions.
-   - SyncWords: Uses AI to make live captioning and subtitling faster, more efficient, and scalable.
+- Competitor Product, UI/UX Patterns:
+  - Many tech companies are leveraging technology to enhance their onboarding processes, with a focus on personalizing learning for new hires, onboarding remote employees, and promoting a continuous learning culture.
+  - Some companies are also using AR/VR for simulation learning during the onboarding process.
 
-2. User Reviews & Sentiment:
-   - LEXI Text: User reviews not clearly found.
-   - VoCaption: User reviews not clearly found.
-   - SyncWords: Positive user reviews highlight the ease of use, quality of translation, and excellent customer service.
+- User Reviews & Sentiment:
+  - Users generally appreciate well-organized onboarding processes, with positive reviews for companies that have a structured and comprehensive approach.
+  - However, there are also complaints about onboarding processes that lack proper documentation or have broken scripts, leading to a frustrating experience for new hires.
 
-3. Accessibility Risks & Complaints:
-   - Poor ASR captions are often inaccurate and incomplete, leading to accessibility complaints.
-   - The average digital accessibility compliance complaint is roughly $200K, indicating the high cost of non-compliance.
+- Accessibility Risks & Complaints:
+  - Some users have raised concerns about the accessibility of onboarding processes, particularly for individuals with disabilities.
+  - There is a need for companies to incorporate reasonable accommodation practices into their onboarding processes to ensure accessibility for all.
 
-4. Best Practices & Recommendations:
-   - Ensure a strong network connection and high-quality audio for accurate real-time captioning.
-   - Use clear timecodes and limit caption length to ensure captions fit within the screen space.
-   - Sync the captions to the video for a seamless user experience.
-   - Focus on accuracy and avoid including filler words unless they're important.
+- Best Practices & Recommendations:
+  - Familiarize new hires with their responsibilities and expectations.
+  - Include training on relevant software tools, processes, and workflows.
+  - Create a company email address for the new hire and assign access to necessary tools, SSO, and non-technical software.
+  - Personalize learning for new hires and consider implementing simulation learning with AR/VR.
+  - Promote a continuous learning culture within the organization.
+  - Ensure that the onboarding process is accessible to everyone, incorporating reasonable accommodation practices as necessary.

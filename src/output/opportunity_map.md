@@ -1,14 +1,17 @@
 Jobs-to-be-Done (JTBD):
-1. Martha needs to communicate with her family and friends via phone calls without missing any information due to her hearing loss.
-2. Martha needs to read captions at her own pace to understand the context of the call.
-3. Martha needs to navigate the app with ease, without feeling overwhelmed by complex features or small text sizes.
+
+1. Martha needs to learn how to use a new technology that simplifies her life without feeling overwhelmed by the complexity of the onboarding process.
+2. Martha needs to read and understand the information on the screen comfortably, without straining her eyes or feeling rushed.
+3. Martha needs to maintain her independence by being able to navigate through the technology without needing assistance from others.
 
 Key Product/UI/UX Moments:
-1. Caption Accuracy: The moment when Martha reads the captions and finds them accurate and complete. This is crucial as it directly affects her understanding of the conversation.
-2. Caption Speed Adjustment: The moment when Martha adjusts the speed of the captions to match her reading speed. This is key as it gives her control over the pace of the information flow.
-3. User-friendly Interface: The moment when Martha interacts with the app and finds it easy to navigate. This is important as it reduces her stress and makes her feel more confident about using the app.
+
+1. First-Time Setup: The onboarding process should be simplified and intuitive. It should include clear, step-by-step instructions with large text and slow caption speeds.
+2. Regular Use: The interface should be clean and uncluttered, with large, easy-to-read text. The user should be able to navigate through the interface smoothly without feeling stressed or overwhelmed.
+3. Troubleshooting: If Martha encounters any issues while using the technology, the process to resolve them should be straightforward and hassle-free. There should be a simple way for her to access help or support if needed.
 
 Success Metrics:
-1. Caption Accuracy Rate: The percentage of captions that accurately represent the spoken words. A high accuracy rate would indicate that the app is meeting Martha's needs and reducing her frustration.
-2. User Satisfaction Score: A measure of how satisfied Martha is with the app, particularly with the caption speed adjustment feature. A high score would indicate that the feature is useful and intuitive.
-3. App Usage Rate: The frequency of Martha's use of the app. An increase in usage rate over time would suggest that Martha is finding the app helpful and easy to use.
+
+1. User Satisfaction: Measure Martha's satisfaction with the onboarding process and the overall user experience through surveys or interviews. A high level of satisfaction would indicate success in simplifying the technology for her.
+2. Independence: Track how often Martha requires assistance while using the technology. A decrease in the frequency of required assistance would indicate success in maintaining her independence.
+3. Retention: Monitor how often and how long Martha uses the technology. An increase in usage frequency and duration would indicate that the technology is meeting her needs and simplifying her life.

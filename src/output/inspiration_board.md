@@ -1,26 +1,26 @@
-Here are five UI patterns for improving caption speed and accessibility:
+Here are the examples of simplified onboarding processes in top products:
 
-1. Product: Smashing Magazine
-   Source URL: [https://www.smashingmagazine.com/2023/01/closed-captions-subtitles-ux/](https://www.smashingmagazine.com/2023/01/closed-captions-subtitles-ux/)
-   Pattern Description: Design patterns for better UX of subtitles, captions, video players, transcripts, and on-screen text.
-   Annotation: These patterns emphasize the importance of designing beyond just text, considering the overall user experience with the video player and on-screen text.
+1. Product: Grammarly
+   Source URL: [Grammarly Onboarding Process](https://www.grammarly.com/onboarding-webinars)
+   Pattern Description: Grammarly provides a tailored onboarding experience based on the user's needs, guiding them every step of the way.
+   Annotation: This onboarding process is suitable for Martha as it can guide her through the process based on her specific needs.
 
-2. Product: Accessibility.com
-   Source URL: [https://www.accessibility.com/blog/best-practices-for-closed-captioning](https://www.accessibility.com/blog/best-practices-for-closed-captioning)
-   Pattern Description: Best practices for closed captioning, including alignment and safe zone considerations.
-   Annotation: Consistent, left-aligned captions can improve readability, while ensuring captions do not obstruct key visual elements enhances the overall viewing experience.
+2. Product: Slack
+   Source URL: [Slack Onboarding Process](https://slack.com/blog/collaboration/slack-101-onboarding)
+   Pattern Description: Slack's onboarding process includes teaching new users how to navigate channels and tweak the Slack app to fit their personality and needs.
+   Annotation: This onboarding process is suitable for Martha as it offers a personalized onboarding experience that can be tweaked to fit her needs.
 
-3. Product: AudioEye
-   Source URL: [https://www.audioeye.com/post/closed-caption-best-practices/](https://www.audioeye.com/post/closed-caption-best-practices/)
-   Pattern Description: Best practices for closed captioning focusing on accuracy and syncing the captions to the video.
-   Annotation: Accurate and well-synchronized captions can significantly improve the user experience, particularly for users like George.
+3. Product: Flipboard
+   Source URL: [Flipboard Onboarding Process](https://medium.com/@kentran27/flipboards-on-boarding-b33f2d8e6831)
+   Pattern Description: Flipboard's onboarding process for content personalization is well-thought-out and designed, making it usable and adoptable.
+   Annotation: This onboarding process is suitable for Martha as it allows her to personalize the content according to her needs.
 
-4. Product: Section508.gov
-   Source URL: [https://www.section508.gov/create/captions-transcripts/](https://www.section508.gov/create/captions-transcripts/)
-   Pattern Description: Recommendations to customize the settings available within the video player, allowing users to change caption settings, like the font size, color, and placement.
-   Annotation: Allowing users to customize caption settings can enhance accessibility and personalization, catering to individual needs and preferences.
+4. Product: PlanetHS
+   Source URL: [PlanetHS Onboarding Process](https://whatfix.com/blog/user-onboarding-examples/)
+   Pattern Description: PlanetHS uses a simple and straightforward onboarding process to guide users.
+   Annotation: This onboarding process is suitable for Martha as it is simple and straightforward, reducing the potential for confusion.
 
-5. Product: Number Analytics
-   Source URL: [https://www.numberanalytics.com/blog/ultimate-guide-to-closed-captions](https://www.numberanalytics.com/blog/ultimate-guide-to-closed-captions)
-   Pattern Description: Comprehensive guide exploring the importance of closed captions in UX, technical considerations, and best practices for designing.
-   Annotation: This guide emphasizes the importance of considering both user experience and technical factors when designing for closed captions.
+5. Product: Evernote
+   Source URL: [Evernote Onboarding Process](https://whatfix.com/blog/user-onboarding-examples/)
+   Pattern Description: Evernote uses a step-by-step onboarding process to guide users through the features of the app.
+   Annotation: This onboarding process is suitable for Martha as it provides a step-by-step guide, making it easier for her to understand how to use the app.

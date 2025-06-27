@@ -1,32 +1,38 @@
-User Journey:
+**User Journey:**
+1. Martha opens the app.
+2. She is greeted with a welcome screen, with large and bold text. (Screen 1)
+3. She is then guided through a step-by-step onboarding process, with clear instructions and the option to go back if needed. (Screen 2 - 4)
+4. After the onboarding, she is presented with the main interface of the app, where she can adjust settings like caption speed and text size. (Screen 5)
 
-1. George opens the app and is welcomed by a simple, uncluttered home screen.
-2. He sees a clear and large "Get Started" button and clicks on it.
-3. George is then guided through a straightforward onboarding process, where he sets up his preferences for captions.
-4. After finishing the onboarding, George is taken to the main video browsing screen.
-5. He selects a video, and the video player opens with captions enabled as per his preferences.
-6. George enjoys the video with fast, accurate, and synchronized captions.
+**Text-Based Wireframe Specs with Annotations:**
 
-Wireframe Specs:
+**Screen 1 - Welcome Screen**
+- Large, bold text welcoming the user to the app.
+- A single "Start" button in the middle of the screen, prompting the user to begin the onboarding process.
+- Annotation: Ensure text size is large and easily readable. Button should be big and easy to press.
 
-1. Home Screen:
-   - A clean screen with the app logo at the top center (Figma Component: App_Logo).
-   - A large "Get Started" button in the center of the screen (Figma Component: Primary_Button). Annotation: The button should be large and clear to reduce cognitive load for George.
-   - Design Token: Large_Font_Size for the button text to ensure visibility for George.
+**Screen 2 - Onboarding Step 1**
+- A brief explanation of what the app does and how it can benefit the user, in large, easy-to-read text.
+- A "Next" button at the bottom of the screen to proceed to the next step.
+- Annotation: Keep the language simple and easy to understand. Ensure the "Next" button is big and easy to press.
 
-2. Onboarding Screens:
-   - Step-by-step guide screens with large text and clear instructions (Figma Component: Guide_Screens). Annotation: The steps should be simple and clear to make the onboarding process user-friendly for George.
-   - A "Next" button on each guide screen to move to the next step (Figma Component: Secondary_Button).
-   - Design Token: Large_Font_Size for the guide text and button text.
+**Screen 3 - Onboarding Step 2**
+- A step-by-step guide on how to use the basic features of the app, with clear instructions and visuals.
+- A "Next" button at the bottom of the screen to proceed to the next step.
+- Annotation: Break down each step into simple actions. Include visuals to help the user understand better.
 
-3. Video Browsing Screen:
-   - A grid view of available videos with large thumbnails (Figma Component: Video_Grid). Annotation: A grid view will allow George to easily browse through the videos.
-   - A search bar at the top for finding specific videos (Figma Component: Search_Bar).
-   - Design Token: Medium_Font_Size for the video titles and search bar text.
+**Screen 4 - Onboarding Step 3**
+- A guide on how to adjust settings like caption speed and text size, with clear instructions and visuals.
+- A "Finish" button at the bottom of the screen to end the onboarding process.
+- Annotation: Make sure the guide is simple and intuitive. The "Finish" button should be big and easy to press.
 
-4. Video Player Screen:
-   - A video player that covers the top half of the screen (Figma Component: Video_Player).
-   - Captions appear at the bottom of the video player as per the user's preferences (Figma Component: Captions). Annotation: Fast and accurate captions are crucial for George's satisfaction.
-   - Design Token: Customizable_Font_Size, Font_Color, and Caption_Placement for the caption settings.
+**Screen 5 - Main Interface**
+- The main interface of the app, with options to adjust settings and navigate to different features.
+- Annotation: Maintain a clean and uncluttered interface. Ensure all options and buttons are big and easy to press.
 
-These wireframe specs aim to create a user-friendly interface and enhance the caption speed to provide a satisfying user experience for George and users like him.
+**Figma/Export Placeholders:**
+- Screen 1: Placeholder for welcome text and "Start" button.
+- Screen 2: Placeholder for explanation text and "Next" button.
+- Screen 3: Placeholder for guide text, visuals, and "Next" button.
+- Screen 4: Placeholder for guide text, visuals, and "Finish" button.
+- Screen 5: Placeholder for main interface options and buttons.
