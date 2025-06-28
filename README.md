@@ -2,6 +2,10 @@
 
 A modern, professional multi-agent workflow app built with **React**, **Vite**, **Tailwind CSS**, **shadcn/ui**, and **FastAPI**.
 
+![sage](https://github.com/user-attachments/assets/71d90656-ac4c-409c-a165-9a7b2b5cbbaa)
+
+It is a swarm of 13 crews, decoupled for processing Human-in-the-loop requests and versioning runs. [Tools: Search(Tavily, Serper, DallETool for image generation]
+
 ## Features
 
 - 🧠 Multi-step, multi-agent workflow (Strategy → Biz Reqs → Design & UX → Features → User Stories)
