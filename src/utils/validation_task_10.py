@@ -6,8 +6,8 @@ validation_task = Task(
     description=(
         "Creative Brief:\n{creative_brief}\n\n"
         "Persona Profile:\n{persona_profile}\n\n"
-        "Opportunity Map:\n{opportunity_map}\n\n"
-        "Wireframes & Prototype:\n{wireframe_output}\n\n"
+        "Opportunity Map:\n{opportunity_result}\n\n"
+        "Wireframes & Prototype:\n{wireframe_result}\n\n"
         "As the Validation Agent, evaluate the design against the Product, UI/UX goals and user needs: perform heuristic checks, flag issues, and score effectiveness."
     ),
     agent=validation_agent,

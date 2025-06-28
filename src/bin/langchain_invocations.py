@@ -11,7 +11,7 @@ def answer(question):
     """
     This function takes a question as input and returns an answer.
     """
-    llm = ChatOpenAI(model="gpt-4o", temperature=0.5)
+    llm = ChatOpenAI(model="gpt-4", temperature=0.5)
     return llm.invoke([question]).content
 
 # testing

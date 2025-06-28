@@ -35,6 +35,15 @@ from constants import WIREFRAME_OUTPUT_PATH
 from agents.validation_agent_10 import validation_agent
 from utils.validation_task_10 import validation_task
 from constants import VALIDATION_REPORT_PATH
+from agents.refinement_agent_11 import refinement_agent
+from utils.refinement_task_11 import refinement_task
+from constants import REFINEMENT_OUTPUT_PATH
+from agents.user_story_agent_12 import user_stories_agent
+from utils.user_story_task_12 import user_stories_task
+from constants import USER_STORIES_OUTPUT_PATH
+from agents.sprint_planning_agent_13 import sprint_planning_agent
+from utils.sprint_planning_task_13 import sprint_planning_task
+from constants import SPRINT_PLANNING_OUTPUT_PATH
 
 # loading environment variables
 load_dotenv()
@@ -248,13 +257,13 @@ def run_wireframe(creative_brief, persona_profile):
         wireframe_output = f.read().strip()
     return wireframe_output
 
-def run_validation(creative_brief, persona_profile, opportunity_result, wireframe_output):
+def run_validation(creative_brief, persona_profile, opportunity_result, wireframe_result):
     crew_val = Crew(agents=[validation_agent], tasks=[validation_task], process=Process.sequential, verbose=True)
     crew_val.kickoff(inputs={
     "creative_brief": creative_brief,
     "persona_profile": persona_profile,
     "opportunity_result": opportunity_result,
-    "wireframe_output": wireframe_output,
+    "wireframe_result": wireframe_result,
     })
     with open(VALIDATION_REPORT_PATH) as f:
         validation_report = f.read().strip()
@@ -270,6 +279,35 @@ def run_validation(creative_brief, persona_profile, opportunity_result, wirefram
         f.write(validation_report + '\n')
     print(f"✅ Validation report saved to {VALIDATION_REPORT_PATH}")
     return validation_report
+
+def run_refinement(validation_report):
+    crew_ref = Crew(agents=[refinement_agent], tasks=[refinement_task], process=Process.sequential, verbose=True)
+    crew_ref.kickoff(inputs={
+    "validation_report": validation_report,
+    })
+    with open(REFINEMENT_OUTPUT_PATH) as f:
+        refinement_result = f.read().strip()
+    return refinement_result
+
+def run_user_stories(refinement_result, opportunity_result):
+    crew_us = Crew(agents=[user_stories_agent], tasks=[user_stories_task], process=Process.sequential, verbose=True)
+    crew_us.kickoff(inputs={
+    "refinement_result": refinement_result,
+    "opportunity_result": opportunity_result,
+    })
+    with open(USER_STORIES_OUTPUT_PATH) as f:
+        user_stories = f.read().strip()
+    return user_stories
+
+def run_sprint_planning(user_stories, opportunity_result):
+    crew_sp = Crew(agents=[sprint_planning_agent], tasks=[sprint_planning_task], process=Process.sequential, verbose=True)
+    crew_sp.kickoff(inputs={
+    "user_stories": user_stories,
+    "opportunity_result": opportunity_result,
+    })
+    with open(SPRINT_PLANNING_OUTPUT_PATH) as f:
+        sprint_plan = f.read().strip()
+    return sprint_plan
 
 def main(transcript):
     os.makedirs("output", exist_ok=True)
@@ -306,9 +344,13 @@ def main(transcript):
     # print(validation_result)
     # Phase 11: Refinement agent
     refinement_result = run_refinement(validation_result)
-    
-
-
+    # print(refinement_result)
+    # Phase 12: User Stories agent
+    user_stories = run_user_stories(refinement_result, opportunity_result)
+    # print(user_stories)
+    # Phase 13: Sprint Planning agent
+    sprint_plan = run_sprint_planning(user_stories, opportunity_result)
+    print("\n\n\n", sprint_plan, "\n\n\n")
 
 
 if __name__ == "__main__":

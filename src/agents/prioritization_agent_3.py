@@ -3,7 +3,9 @@ from crewai_tools import SerperDevTool
 from prompts.prioritization_prompt_3 import PRIORITIZATION_AGENT_PROMPT
 
 llm = LLM(model="openai/gpt-4", temperature=0.5)
-serper_tool = SerperDevTool(country="us", locale="en", location="United States", n_results=3)
+
+serper_tool = SerperDevTool(n_results=5)
+# serper_tool = SerperDevTool(country="us", locale="en", location="United States", n_results=3)
 
 prioritization_agent = Agent(
     role="Prioritization Agent",

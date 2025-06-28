@@ -1,7 +1,7 @@
 from crewai import Agent, LLM
 from prompts.refinement_prompt_11 import REFINEMENT_AGENT_PROMPT
 
-llm = LLM(model="openai/gpt-4", temperature=0.4)
+llm = LLM(model="openai/gpt-4", temperature=0.5)
 
 refinement_agent = Agent(
     role="Refinement Agent",

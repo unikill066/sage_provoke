@@ -4,6 +4,7 @@ PRIORITIZATION_AGENT_PROMPT = """<prioritization_agent>
   </role>
   <instructions>
     <step>Read the selected concept below.</step>
+    {selected_concept}
     <step>When you need live benchmarks, app-review snippets or case-study data, call the SerperDevTool:
      ```xml
      <call tool="SerperDevTool">
