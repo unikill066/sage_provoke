@@ -13,7 +13,6 @@ A modern, professional multi-agent workflow app built with **React**, **Vite**, 
 ![sage-asset-git](https://github.com/user-attachments/assets/9c15ff68-7b64-4078-b8ca-5bb12b848d65)
 
 
-
 ## Features
 
 - 🧠 Multi-step, multi-agent workflow (Strategy → Biz Reqs → Design & UX → Features → User Stories)
